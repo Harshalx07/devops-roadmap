@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DevOps Mastery · Batch 43 · Multi-Cloud + AI</title>
+<title>CloudDevOpsHub · DevOps Mastery · Batch 43</title>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
@@ -36,10 +36,12 @@ body{background:var(--bg);color:var(--white);font-family:var(--fd);overflow-x:hi
 #bg-canvas{position:fixed;inset:0;z-index:0;pointer-events:none}
 
 /* ── NAV ── */
-nav{position:fixed;top:0;left:0;right:0;z-index:300;height:62px;display:flex;align-items:center;justify-content:space-between;padding:0 32px;background:rgba(3,5,15,0.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
-.nav-brand{display:flex;align-items:center;gap:10px;cursor:pointer;user-select:none}
-.nav-logo{width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,var(--blue),var(--purple));display:flex;align-items:center;justify-content:center;font-size:16px;box-shadow:0 0 20px rgba(79,124,255,0.4)}
-.nav-title{font-weight:800;font-size:15px;color:var(--white);letter-spacing:-.3px}
+nav{position:fixed;top:0;left:0;right:0;z-index:300;height:62px;display:flex;align-items:center;justify-content:space-between;padding:0 32px;background:rgba(3,5,15,0.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.nav-brand{display:flex;align-items:center;gap:10px;cursor:pointer;user-select:none;text-decoration:none}
+.nav-logo{width:34px;height:34px;border-radius:9px;background:linear-gradient(135deg,var(--blue),var(--purple));display:flex;align-items:center;justify-content:center;font-size:17px;box-shadow:0 0 20px rgba(79,124,255,0.4);flex-shrink:0}
+.nav-brand-text{display:flex;flex-direction:column;line-height:1.1}
+.nav-title{font-weight:900;font-size:14px;color:var(--white);letter-spacing:-.3px}
+.nav-subtitle{font-family:var(--fm);font-size:9px;color:var(--blue);letter-spacing:1.5px;text-transform:uppercase}
 .nav-tabs{display:flex;gap:2px}
 .ntab{background:none;border:none;font-family:var(--fd);font-size:11px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;color:var(--muted);padding:7px 14px;border-radius:8px;cursor:pointer;transition:all .2s}
 .ntab:hover{color:var(--light);background:rgba(79,124,255,0.08)}
@@ -49,15 +51,19 @@ nav{position:fixed;top:0;left:0;right:0;z-index:300;height:62px;display:flex;ali
 .np-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--blue),var(--green));border-radius:10px;transition:width .6s ease;box-shadow:0 0 10px var(--blue)}
 .np-txt{font-family:var(--fm);font-size:12px;color:var(--blue);min-width:36px;font-weight:700}
 
-/* ── PAGES ── */
-.pg{display:none;position:relative;z-index:1;min-height:100vh}
-.pg.on{display:block}
+/* ── SECTIONS (single page) ── */
+.section{position:relative;z-index:1}
+.section-anchor{display:block;height:62px;margin-top:-62px;visibility:hidden}
+
+/* ── SECTION DIVIDER ── */
+.sec-div{display:flex;align-items:center;gap:16px;padding:0 40px;max-width:1300px;margin:0 auto 0}
+.sec-div-line{flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--border2),transparent)}
+.sec-div-label{font-family:var(--fm);font-size:9px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;padding:8px 14px;border:1px solid var(--border);border-radius:20px;white-space:nowrap}
 
 /* ── HERO SECTION ── */
-.hero{padding:100px 40px 60px;max-width:1300px;margin:0 auto}
+.hero{padding:90px 40px 60px;max-width:1300px;margin:0 auto}
 .hero-grid{display:grid;grid-template-columns:1fr 420px;gap:60px;align-items:center;margin-bottom:60px}
 
-/* HERO LEFT */
 .hero-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border-radius:30px;border:1px solid rgba(79,124,255,0.3);background:rgba(79,124,255,0.06);font-family:var(--fm);font-size:10px;letter-spacing:2px;color:var(--blue);text-transform:uppercase;margin-bottom:24px}
 .hero-badge-dot{width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 10px var(--green);animation:blink 1.5s ease-in-out infinite}
 .hero-h1{font-size:clamp(38px,5vw,68px);font-weight:900;line-height:1.0;letter-spacing:-2px;color:var(--white);margin-bottom:20px}
@@ -75,7 +81,6 @@ nav{position:fixed;top:0;left:0;right:0;z-index:300;height:62px;display:flex;ali
 .cta-ghost{background:transparent;color:var(--light);border:1.5px solid var(--border2)}
 .cta-ghost:hover{background:rgba(79,124,255,0.08);border-color:rgba(79,124,255,0.4);transform:translateY(-2px)}
 
-/* HERO RIGHT - 3D PROGRESS ORB */
 .hero-orb{display:flex;align-items:center;justify-content:center;position:relative;height:380px}
 .orb-wrap{position:relative;width:280px;height:280px}
 .orb-svg{position:absolute;inset:0;transform:rotate(-90deg)}
@@ -114,7 +119,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:300;height:62px;display:flex;ali
 .pb-item.done .pb-badge{display:block}
 
 /* QA BANNER */
-.qa-banner{background:linear-gradient(135deg,rgba(34,211,238,0.08) 0%,rgba(79,124,255,0.06) 100%);border:1px solid rgba(34,211,238,0.2);border-radius:16px;padding:18px 24px;display:flex;align-items:center;gap:18px;margin-bottom:40px}
+.qa-banner{background:linear-gradient(135deg,rgba(34,211,238,0.08) 0%,rgba(79,124,255,0.06) 100%);border:1px solid rgba(34,211,238,0.2);border-radius:16px;padding:18px 24px;display:flex;align-items:center;gap:18px;margin-bottom:16px}
 .qa-icon{font-size:28px;flex-shrink:0}
 .qa-text strong{font-size:15px;font-weight:700;color:var(--white);display:block;margin-bottom:3px}
 .qa-text span{font-size:12.5px;color:var(--light);font-weight:400}
@@ -140,8 +145,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:300;height:62px;display:flex;ali
 .ti{font-family:var(--fm);font-size:10px;letter-spacing:2px;color:var(--dim);text-transform:uppercase;flex-shrink:0;display:flex;align-items:center;gap:8px}
 .ti::before{content:'◆';font-size:6px;color:var(--blue);opacity:.6}
 
-/* ── ROADMAP PAGE ── */
-.rm-wrap{display:grid;grid-template-columns:220px 1fr;gap:24px;padding:80px 32px 60px;max-width:1300px;margin:0 auto}
+/* ── ROADMAP SECTION ── */
+.rm-wrap{display:grid;grid-template-columns:220px 1fr;gap:24px;padding:60px 32px 60px;max-width:1300px;margin:0 auto}
 .sb{position:sticky;top:74px;align-self:start}
 .sb-title{font-family:var(--fm);font-size:8px;letter-spacing:3px;color:var(--muted);text-transform:uppercase;margin-bottom:10px;padding-left:4px}
 .sb-btn{width:100%;background:none;border:none;font-family:var(--fd);font-size:12px;font-weight:500;color:var(--light);padding:9px 12px;border-radius:10px;display:flex;align-items:center;gap:9px;cursor:pointer;transition:all .2s;margin-bottom:2px;text-align:left;border:1px solid transparent}
@@ -155,7 +160,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:300;height:62px;display:flex;ali
 .sb-dot.part{background:var(--blue);box-shadow:0 0 8px var(--blue)}
 
 /* ── MODULE ── */
-.mod{margin-bottom:16px;scroll-margin-top:72px}
+.mod{margin-bottom:16px;scroll-margin-top:80px}
 .mod-head{display:flex;align-items:center;gap:14px;padding:16px 20px;background:var(--card);border:1px solid var(--border);border-radius:16px;cursor:pointer;user-select:none;transition:all .3s;position:relative;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.04)}
 .mod-head:hover{border-color:var(--border2);box-shadow:0 8px 32px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.06)}
 .mod.open .mod-head{border-radius:16px 16px 0 0;border-bottom-color:transparent}
@@ -199,11 +204,11 @@ nav{position:fixed;top:0;left:0;right:0;z-index:300;height:62px;display:flex;ali
 .dchip{font-family:var(--fm);font-size:8.5px;color:var(--muted);background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);padding:2px 7px;border-radius:4px}
 .dc.done .dchip{color:rgba(16,255,160,.4);border-color:rgba(16,255,160,.1)}
 .dc-hint{position:absolute;bottom:7px;right:9px;font-family:var(--fm);font-size:8px;letter-spacing:1px;color:var(--dim);opacity:0;transition:opacity .2s;text-transform:uppercase}
-.dc:hover .dc-hint:not(.dc.done .dc-hint){opacity:1}
+.dc:hover .dc-hint{opacity:1}
 .dc.done .dc-hint{display:none}
 
 /* ── PROJECTS PAGE ── */
-.pg-inner{padding:84px 40px 70px;max-width:1300px;margin:0 auto}
+.pg-inner{padding:60px 40px 70px;max-width:1300px;margin:0 auto}
 .page-head{margin-bottom:36px}
 .ph-ey{font-family:var(--fm);font-size:10px;letter-spacing:3px;color:var(--blue);text-transform:uppercase;margin-bottom:10px;display:flex;align-items:center;gap:10px}
 .ph-ey::before{content:'';width:16px;height:1px;background:var(--blue)}
@@ -282,12 +287,16 @@ nav{position:fixed;top:0;left:0;right:0;z-index:300;height:62px;display:flex;ali
 .jt-s{font-family:var(--fm);font-size:9px;color:var(--muted)}
 
 /* ── FOOTER ── */
-footer{position:relative;z-index:1;text-align:center;padding:40px;border-top:1px solid var(--border);margin-top:20px}
-.ft-logo{font-size:18px;font-weight:900;color:var(--white);margin-bottom:6px}
-.ft-links{display:flex;justify-content:center;gap:24px;margin:14px 0;flex-wrap:wrap}
+footer{position:relative;z-index:1;padding:50px 40px 40px;border-top:1px solid var(--border);margin-top:20px;background:rgba(3,5,15,0.6)}
+.ft-inner{max-width:1300px;margin:0 auto}
+.ft-brand{display:flex;align-items:center;gap:12px;margin-bottom:18px}
+.ft-brand-logo{width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,var(--blue),var(--purple));display:flex;align-items:center;justify-content:center;font-size:20px;box-shadow:0 0 20px rgba(79,124,255,0.3)}
+.ft-brand-name{font-size:22px;font-weight:900;color:var(--white);letter-spacing:-.5px}
+.ft-brand-url{font-family:var(--fm);font-size:10px;color:var(--blue);letter-spacing:1px}
+.ft-links{display:flex;justify-content:flex-start;gap:24px;margin:16px 0;flex-wrap:wrap}
 .ft-links button{background:none;border:none;font-family:var(--fm);font-size:9px;letter-spacing:2px;color:var(--muted);text-transform:uppercase;cursor:pointer;transition:color .2s}
 .ft-links button:hover{color:var(--blue)}
-.ft-copy{font-family:var(--fm);font-size:9px;color:var(--dim);letter-spacing:1px}
+.ft-copy{font-family:var(--fm);font-size:9px;color:var(--dim);letter-spacing:1px;margin-top:10px}
 
 /* ── TOAST ── */
 .toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--card2);border:1px solid var(--border2);border-radius:14px;padding:12px 20px;display:flex;align-items:center;gap:10px;font-size:13px;font-weight:600;color:var(--white);z-index:999;transition:transform .4s cubic-bezier(.34,1.56,.64,1),opacity .3s;opacity:0;box-shadow:0 16px 48px rgba(0,0,0,.7);pointer-events:none;white-space:nowrap}
@@ -311,8 +320,8 @@ footer{position:relative;z-index:1;text-align:center;padding:40px;border-top:1px
 .a1{animation:fadeUp .7s .1s both}.a2{animation:fadeUp .7s .25s both}.a3{animation:fadeUp .7s .4s both}.a4{animation:fadeUp .7s .55s both}
 
 /* ── RESPONSIVE ── */
-@media(max-width:1000px){.rm-wrap{grid-template-columns:1fr;padding:80px 20px 50px}.sb{display:none}.hero-grid{grid-template-columns:1fr;padding-top:90px}.hero-orb{display:none}.mod-tiles{grid-template-columns:repeat(2,1fr)}.pb-grid{grid-template-columns:repeat(2,1fr)}.ov-grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:640px){nav{padding:0 16px}.ntab{display:none}.hero{padding:90px 16px 40px}.mod-tiles{grid-template-columns:1fr}.pb-grid{grid-template-columns:1fr}.ov-grid{grid-template-columns:1fr}.pg-inner{padding:80px 16px 50px}}
+@media(max-width:1000px){.rm-wrap{grid-template-columns:1fr;padding:40px 20px 50px}.sb{display:none}.hero-grid{grid-template-columns:1fr}.hero-orb{display:none}.mod-tiles{grid-template-columns:repeat(2,1fr)}.pb-grid{grid-template-columns:repeat(2,1fr)}.ov-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:640px){nav{padding:0 16px}.ntab{display:none}.hero{padding:80px 16px 40px}.mod-tiles{grid-template-columns:1fr}.pb-grid{grid-template-columns:1fr}.ov-grid{grid-template-columns:1fr}.pg-inner{padding:40px 16px 50px}}
 </style>
 </head>
 <body>
@@ -321,16 +330,19 @@ footer{position:relative;z-index:1;text-align:center;padding:40px;border-top:1px
 
 <!-- NAV -->
 <nav>
-  <div class="nav-brand" onclick="showPage('home')">
-    <div class="nav-logo">🚀</div>
-    <div class="nav-title">DevOps AI · Batch 43</div>
-  </div>
+  <a class="nav-brand" href="#home">
+    <div class="nav-logo">☁️</div>
+    <div class="nav-brand-text">
+      <div class="nav-title">CloudDevOpsHub</div>
+      <div class="nav-subtitle">Batch 43 · DevOps AI</div>
+    </div>
+  </a>
   <div class="nav-tabs">
-    <button class="ntab on" id="nb-home" onclick="showPage('home')">Home</button>
-    <button class="ntab" id="nb-roadmap" onclick="showPage('roadmap')">Roadmap</button>
-    <button class="ntab" id="nb-projects" onclick="showPage('projects')">Projects</button>
-    <button class="ntab" id="nb-stack" onclick="showPage('stack')">Stack</button>
-    <button class="ntab" id="nb-progress" onclick="showPage('progress')">Progress</button>
+    <button class="ntab on" id="nb-home" onclick="scrollToSection('home')">Home</button>
+    <button class="ntab" id="nb-roadmap" onclick="scrollToSection('roadmap')">Roadmap</button>
+    <button class="ntab" id="nb-projects" onclick="scrollToSection('projects')">Projects</button>
+    <button class="ntab" id="nb-stack" onclick="scrollToSection('stack')">Stack</button>
+    <button class="ntab" id="nb-progress" onclick="scrollToSection('progress')">Progress</button>
   </div>
   <div class="nav-prog">
     <div class="np-bar"><div class="np-fill" id="npFill"></div></div>
@@ -339,10 +351,10 @@ footer{position:relative;z-index:1;text-align:center;padding:40px;border-top:1px
 </nav>
 
 <!-- ════════════ HOME ════════════ -->
-<div class="pg on" id="pg-home">
+<div class="section" id="sec-home">
+  <span class="section-anchor" id="home"></span>
   <div class="hero">
     <div class="hero-grid">
-      <!-- LEFT -->
       <div class="a1">
         <div class="hero-badge"><div class="hero-badge-dot"></div>100% Live · 55 Sessions · Batch 43</div>
         <h1 class="hero-h1">Multi-Cloud<br><span class="g1">DevOps</span><br><span class="g2">+ AI Mastery</span></h1>
@@ -355,11 +367,10 @@ footer{position:relative;z-index:1;text-align:center;padding:40px;border-top:1px
           <div class="hs"><span class="hs-num" style="color:var(--green)">55</span><span class="hs-lbl">Sessions</span></div>
         </div>
         <div class="hero-ctas">
-          <button class="cta-btn cta-primary" onclick="showPage('roadmap')">Start Roadmap →</button>
-          <button class="cta-btn cta-ghost" onclick="showPage('progress')">My Progress</button>
+          <button class="cta-btn cta-primary" onclick="scrollToSection('roadmap')">Start Roadmap →</button>
+          <button class="cta-btn cta-ghost" onclick="scrollToSection('progress')">My Progress</button>
         </div>
       </div>
-      <!-- RIGHT ORB -->
       <div class="hero-orb a2">
         <div style="position:relative">
           <div class="orb-ring1"></div>
@@ -413,7 +424,7 @@ footer{position:relative;z-index:1;text-align:center;padding:40px;border-top:1px
       </div>
       <div class="qa-pill">LIVE DAILY</div>
     </div>
-    <div class="qa-banner a3" style="margin-bottom:16px;background:linear-gradient(135deg,rgba(255,230,102,0.07),rgba(255,140,0,0.05));border-color:rgba(255,230,102,0.2)">
+    <div class="qa-banner a3" style="background:linear-gradient(135deg,rgba(255,230,102,0.07),rgba(255,140,0,0.05));border-color:rgba(255,230,102,0.2)">
       <div class="qa-icon">📅</div>
       <div class="qa-text">
         <strong>Weekly Mock Interviews — Every Wednesday 8:00 PM IST</strong>
@@ -423,273 +434,298 @@ footer{position:relative;z-index:1;text-align:center;padding:40px;border-top:1px
     </div>
 
     <!-- MODULE TILES -->
-    <div class="a3" style="margin-bottom:12px"><div style="font-family:var(--fm);font-size:9px;letter-spacing:3px;color:var(--blue);text-transform:uppercase;display:flex;align-items:center;gap:10px;margin-bottom:10px"><span style="width:14px;height:1px;background:var(--blue);display:block"></span>9 Learning Modules</div>
+    <div class="a3" style="margin:32px 0 12px"><div style="font-family:var(--fm);font-size:9px;letter-spacing:3px;color:var(--blue);text-transform:uppercase;display:flex;align-items:center;gap:10px;margin-bottom:10px"><span style="width:14px;height:1px;background:var(--blue);display:block"></span>9 Learning Modules</div>
     <div style="font-size:clamp(20px,3vw,32px);font-weight:900;letter-spacing:-1px;color:var(--white);margin-bottom:20px">Your Complete <span style="background:linear-gradient(135deg,var(--blue),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Learning Path</span></div></div>
     <div class="mod-tiles a4">
-      <button class="mod-tile-btn" style="border-left:3px solid #4f7cff" onclick="showPage('roadmap')"><div class="mt-accent" style="background:linear-gradient(90deg,#4f7cff,transparent)"></div><div class="mt-top"><span class="mt-ico">🌐</span><span class="mt-tag" style="color:#4f7cff">MOD 01</span></div><div class="mt-name">Cloud & DevOps + AI Foundation</div><div class="mt-meta">Day 01–04 · Foundation</div><div class="mt-bar"><div class="mt-prog" id="htf-m1" style="background:#4f7cff"></div></div></button>
-      <button class="mod-tile-btn" style="border-left:3px solid #10b981" onclick="showPage('roadmap')"><div class="mt-accent" style="background:linear-gradient(90deg,#10b981,transparent)"></div><div class="mt-top"><span class="mt-ico">🐧</span><span class="mt-tag" style="color:#10b981">MOD 02</span></div><div class="mt-name">Linux Admin for DevOps + GCP</div><div class="mt-meta">Day 05–09 · Linux</div><div class="mt-bar"><div class="mt-prog" id="htf-m2" style="background:#10b981"></div></div></button>
-      <button class="mod-tile-btn" style="border-left:3px solid #ff8c00" onclick="showPage('roadmap')"><div class="mt-accent" style="background:linear-gradient(90deg,#ff8c00,transparent)"></div><div class="mt-top"><span class="mt-ico">☁️</span><span class="mt-tag" style="color:#ff8c00">MOD 03</span></div><div class="mt-name">AWS Top 10 Services + 10 Practicals</div><div class="mt-meta">Day 10–21 · AWS</div><div class="mt-bar"><div class="mt-prog" id="htf-m3" style="background:#ff8c00"></div></div></button>
-      <button class="mod-tile-btn" style="border-left:3px solid #ff4fa0" onclick="showPage('roadmap')"><div class="mt-accent" style="background:linear-gradient(90deg,#ff4fa0,transparent)"></div><div class="mt-top"><span class="mt-ico">🔄</span><span class="mt-tag" style="color:#ff4fa0">MOD 04</span></div><div class="mt-name">Core CI/CD — Git, GitHub & Jenkins</div><div class="mt-meta">Day 22–29 · CI/CD</div><div class="mt-bar"><div class="mt-prog" id="htf-m4" style="background:#ff4fa0"></div></div></button>
-      <button class="mod-tile-btn" style="border-left:3px solid #22d3ee" onclick="showPage('roadmap')"><div class="mt-accent" style="background:linear-gradient(90deg,#22d3ee,transparent)"></div><div class="mt-top"><span class="mt-ico">🐳</span><span class="mt-tag" style="color:#22d3ee">MOD 05</span></div><div class="mt-name">Docker & Kubernetes + GKE + CM</div><div class="mt-meta">Day 30–37 · Containers</div><div class="mt-bar"><div class="mt-prog" id="htf-m5" style="background:#22d3ee"></div></div></button>
-      <button class="mod-tile-btn" style="border-left:3px solid #a855f7" onclick="showPage('roadmap')"><div class="mt-accent" style="background:linear-gradient(90deg,#a855f7,transparent)"></div><div class="mt-top"><span class="mt-ico">📦</span><span class="mt-tag" style="color:#a855f7">MOD 06</span></div><div class="mt-name">Ansible & Terraform — IaC Automation</div><div class="mt-meta">Day 38–46 · IaC</div><div class="mt-bar"><div class="mt-prog" id="htf-m6" style="background:#a855f7"></div></div></button>
-      <button class="mod-tile-btn" style="border-left:3px solid #ffe066" onclick="showPage('roadmap')"><div class="mt-accent" style="background:linear-gradient(90deg,#ffe066,transparent)"></div><div class="mt-top"><span class="mt-ico">💙</span><span class="mt-tag" style="color:#ffe066">MOD 07</span></div><div class="mt-name">Azure DevOps + Realtime AI</div><div class="mt-meta">Day 47–49 · Azure + AI</div><div class="mt-bar"><div class="mt-prog" id="htf-m7" style="background:#ffe066"></div></div></button>
-      <button class="mod-tile-btn" style="border-left:3px solid #10ffa0" onclick="showPage('roadmap')"><div class="mt-accent" style="background:linear-gradient(90deg,#10ffa0,transparent)"></div><div class="mt-top"><span class="mt-ico">🚀</span><span class="mt-tag" style="color:#10ffa0">MOD 08</span></div><div class="mt-name">8 RealTime LIVE Projects</div><div class="mt-meta">Day 50–58 · Capstone</div><div class="mt-bar"><div class="mt-prog" id="htf-m8" style="background:#10ffa0"></div></div></button>
+      <button class="mod-tile-btn" style="border-left:3px solid #4f7cff" onclick="scrollToSection('roadmap')"><div class="mt-accent" style="background:linear-gradient(90deg,#4f7cff,transparent)"></div><div class="mt-top"><span class="mt-ico">🌐</span><span class="mt-tag" style="color:#4f7cff">MOD 01</span></div><div class="mt-name">Cloud & DevOps + AI Foundation</div><div class="mt-meta">Day 01–04 · Foundation</div><div class="mt-bar"><div class="mt-prog" id="htf-m1" style="background:#4f7cff"></div></div></button>
+      <button class="mod-tile-btn" style="border-left:3px solid #10b981" onclick="scrollToSection('roadmap')"><div class="mt-accent" style="background:linear-gradient(90deg,#10b981,transparent)"></div><div class="mt-top"><span class="mt-ico">🐧</span><span class="mt-tag" style="color:#10b981">MOD 02</span></div><div class="mt-name">Linux Admin for DevOps + GCP</div><div class="mt-meta">Day 05–09 · Linux</div><div class="mt-bar"><div class="mt-prog" id="htf-m2" style="background:#10b981"></div></div></button>
+      <button class="mod-tile-btn" style="border-left:3px solid #ff8c00" onclick="scrollToSection('roadmap')"><div class="mt-accent" style="background:linear-gradient(90deg,#ff8c00,transparent)"></div><div class="mt-top"><span class="mt-ico">☁️</span><span class="mt-tag" style="color:#ff8c00">MOD 03</span></div><div class="mt-name">AWS Top 10 Services + 10 Practicals</div><div class="mt-meta">Day 10–21 · AWS</div><div class="mt-bar"><div class="mt-prog" id="htf-m3" style="background:#ff8c00"></div></div></button>
+      <button class="mod-tile-btn" style="border-left:3px solid #ff4fa0" onclick="scrollToSection('roadmap')"><div class="mt-accent" style="background:linear-gradient(90deg,#ff4fa0,transparent)"></div><div class="mt-top"><span class="mt-ico">🔄</span><span class="mt-tag" style="color:#ff4fa0">MOD 04</span></div><div class="mt-name">Core CI/CD — Git, GitHub & Jenkins</div><div class="mt-meta">Day 22–29 · CI/CD</div><div class="mt-bar"><div class="mt-prog" id="htf-m4" style="background:#ff4fa0"></div></div></button>
+      <button class="mod-tile-btn" style="border-left:3px solid #22d3ee" onclick="scrollToSection('roadmap')"><div class="mt-accent" style="background:linear-gradient(90deg,#22d3ee,transparent)"></div><div class="mt-top"><span class="mt-ico">🐳</span><span class="mt-tag" style="color:#22d3ee">MOD 05</span></div><div class="mt-name">Docker & Kubernetes + GKE + CM</div><div class="mt-meta">Day 30–37 · Containers</div><div class="mt-bar"><div class="mt-prog" id="htf-m5" style="background:#22d3ee"></div></div></button>
+      <button class="mod-tile-btn" style="border-left:3px solid #a855f7" onclick="scrollToSection('roadmap')"><div class="mt-accent" style="background:linear-gradient(90deg,#a855f7,transparent)"></div><div class="mt-top"><span class="mt-ico">📦</span><span class="mt-tag" style="color:#a855f7">MOD 06</span></div><div class="mt-name">Ansible & Terraform — IaC Automation</div><div class="mt-meta">Day 38–46 · IaC</div><div class="mt-bar"><div class="mt-prog" id="htf-m6" style="background:#a855f7"></div></div></button>
+      <button class="mod-tile-btn" style="border-left:3px solid #ffe066" onclick="scrollToSection('roadmap')"><div class="mt-accent" style="background:linear-gradient(90deg,#ffe066,transparent)"></div><div class="mt-top"><span class="mt-ico">💙</span><span class="mt-tag" style="color:#ffe066">MOD 07</span></div><div class="mt-name">Azure DevOps + Realtime AI</div><div class="mt-meta">Day 47–49 · Azure + AI</div><div class="mt-bar"><div class="mt-prog" id="htf-m7" style="background:#ffe066"></div></div></button>
+      <button class="mod-tile-btn" style="border-left:3px solid #10ffa0" onclick="scrollToSection('roadmap')"><div class="mt-accent" style="background:linear-gradient(90deg,#10ffa0,transparent)"></div><div class="mt-top"><span class="mt-ico">🚀</span><span class="mt-tag" style="color:#10ffa0">MOD 08</span></div><div class="mt-name">8 RealTime LIVE Projects</div><div class="mt-meta">Day 50–58 · Capstone</div><div class="mt-bar"><div class="mt-prog" id="htf-m8" style="background:#10ffa0"></div></div></button>
     </div>
   </div>
+
   <div class="ticker-wrap">
     <div class="ticker-inner">
       <div class="ti">AWS EC2 S3 RDS VPC Lambda IAM CloudWatch</div><div class="ti">Docker Kubernetes GKE Helm Microservices</div><div class="ti">Terraform Ansible IaC HCL Playbooks</div><div class="ti">Jenkins GitHub Actions CI/CD Groovy Maven</div><div class="ti">Prometheus Grafana Monitoring Dashboards</div><div class="ti">Python Bash boto3 Shell Automation</div><div class="ti">Azure DevOps Pipelines Repos Boards</div><div class="ti">AI Copilot Gemini DevSecOps ML OPS</div>
       <div class="ti">AWS EC2 S3 RDS VPC Lambda IAM CloudWatch</div><div class="ti">Docker Kubernetes GKE Helm Microservices</div><div class="ti">Terraform Ansible IaC HCL Playbooks</div><div class="ti">Jenkins GitHub Actions CI/CD Groovy Maven</div><div class="ti">Prometheus Grafana Monitoring Dashboards</div><div class="ti">Python Bash boto3 Shell Automation</div><div class="ti">Azure DevOps Pipelines Repos Boards</div><div class="ti">AI Copilot Gemini DevSecOps ML OPS</div>
     </div>
   </div>
-  <footer><div class="ft-logo">DevOps Mastery · Batch 43</div><div class="ft-links"><button onclick="showPage('home')">Home</button><button onclick="showPage('roadmap')">Roadmap</button><button onclick="showPage('projects')">Projects</button><button onclick="showPage('stack')">Stack</button><button onclick="showPage('progress')">Progress</button></div><div class="ft-copy">Multi-Cloud with AWS + DevOps with AI · clouddevopshub.com · DevOps With Vikas</div></footer>
 </div>
 
 <!-- ════════════ ROADMAP ════════════ -->
-<div class="pg" id="pg-roadmap">
-<div class="rm-wrap">
-  <!-- SIDEBAR -->
-  <div class="sb">
-    <div class="sb-title">Module Navigator</div>
-    <button class="sb-btn" onclick="openMod('m1')"><span class="sb-ico">🌐</span><div class="sb-info"><div class="sb-name">Foundation + AI</div><div class="sb-sub">Day 01–04</div></div><div class="sb-dot" id="sd-m1"></div></button>
-    <button class="sb-btn" onclick="openMod('m2')"><span class="sb-ico">🐧</span><div class="sb-info"><div class="sb-name">Linux + GCP</div><div class="sb-sub">Day 05–09</div></div><div class="sb-dot" id="sd-m2"></div></button>
-    <button class="sb-btn" onclick="openMod('m3')"><span class="sb-ico">☁️</span><div class="sb-info"><div class="sb-name">AWS Services</div><div class="sb-sub">Day 10–21</div></div><div class="sb-dot" id="sd-m3"></div></button>
-    <button class="sb-btn" onclick="openMod('m4')"><span class="sb-ico">🔄</span><div class="sb-info"><div class="sb-name">Git + Jenkins</div><div class="sb-sub">Day 22–29</div></div><div class="sb-dot" id="sd-m4"></div></button>
-    <button class="sb-btn" onclick="openMod('m5')"><span class="sb-ico">🐳</span><div class="sb-info"><div class="sb-name">Docker + K8s + GKE</div><div class="sb-sub">Day 30–37</div></div><div class="sb-dot" id="sd-m5"></div></button>
-    <button class="sb-btn" onclick="openMod('m6')"><span class="sb-ico">📦</span><div class="sb-info"><div class="sb-name">Ansible + Terraform</div><div class="sb-sub">Day 38–46</div></div><div class="sb-dot" id="sd-m6"></div></button>
-    <button class="sb-btn" onclick="openMod('m7')"><span class="sb-ico">💙</span><div class="sb-info"><div class="sb-name">Azure + AI</div><div class="sb-sub">Day 47–49</div></div><div class="sb-dot" id="sd-m7"></div></button>
-    <button class="sb-btn" onclick="openMod('m8')"><span class="sb-ico">🚀</span><div class="sb-info"><div class="sb-name">Live Projects</div><div class="sb-sub">Day 50–58</div></div><div class="sb-dot" id="sd-m8"></div></button>
-  </div>
-
-  <!-- MODULES -->
-  <div>
-
-  <!-- M1 -->
-  <div class="mod open" id="m1" style="--mc:#4f7cff">
-    <div class="mod-head" onclick="toggleMod('m1')"><div class="mod-accent" style="background:var(--mc)"></div><div class="mod-ico-wrap" style="background:rgba(79,124,255,0.12);border:1px solid rgba(79,124,255,0.2)">🌐</div><div class="mod-info"><div class="mod-tag" style="color:var(--mc)">Module 01 · Day 01–04</div><div class="mod-name">Cloud & DevOps + AI Foundation</div></div><div class="mod-ring"><svg width="46" height="46" viewBox="0 0 46 46"><circle class="mrt" cx="23" cy="23" r="19"/><circle class="mrf" id="mr-m1" cx="23" cy="23" r="19" stroke-dasharray="119.4" stroke-dashoffset="119.4" stroke="var(--mc)"/></svg><div class="mrn" id="mp-m1">0%</div></div><div class="mod-chev">›</div></div>
-    <div class="mod-body"><div class="day-grid">
-      <div class="dc" onclick="tDay(this,'m1')"><div class="dc-check">✓</div><div class="dc-day">Day 01</div><div class="dc-title">DevOps Intro & Course Overview</div><div class="dc-chips"><span class="dchip">DevOps</span><span class="dchip">AWS</span><span class="dchip">Copilot</span><span class="dchip">Job Openings</span></div><div class="dc-hint">tap to complete</div></div>
-      <div class="dc" onclick="tDay(this,'m1')"><div class="dc-check">✓</div><div class="dc-day">Day 02</div><div class="dc-title">Cloud Computing & Virtualization</div><div class="dc-chips"><span class="dchip">IaaS</span><span class="dchip">PaaS</span><span class="dchip">SaaS</span><span class="dchip">Docker</span></div><div class="dc-hint">tap to complete</div></div>
-      <div class="dc" onclick="tDay(this,'m1')"><div class="dc-check">✓</div><div class="dc-day">Day 03</div><div class="dc-title">DevOps Principles & Practices</div><div class="dc-chips"><span class="dchip">CI/CD</span><span class="dchip">6 C's</span><span class="dchip">CICD/CT/CM/CB8</span></div><div class="dc-hint">tap to complete</div></div>
-      <div class="dc" onclick="tDay(this,'m1')"><div class="dc-check">✓</div><div class="dc-day">Day 04</div><div class="dc-title">Foundation of AI + Prompt Engineering</div><div class="dc-chips"><span class="dchip">AI</span><span class="dchip">Gen AI</span><span class="dchip">Agentic AI</span><span class="dchip">Copilot Setup</span></div><div class="dc-hint">tap to complete</div></div>
-    </div><div class="ws-bar ws-orange">🎯 Weekend Workshop after Foundation</div></div>
-  </div>
-
-  <!-- M2 -->
-  <div class="mod" id="m2" style="--mc:#10b981">
-    <div class="mod-head" onclick="toggleMod('m2')"><div class="mod-accent" style="background:var(--mc)"></div><div class="mod-ico-wrap" style="background:rgba(16,185,129,0.12);border:1px solid rgba(16,185,129,0.2)">🐧</div><div class="mod-info"><div class="mod-tag" style="color:var(--mc)">Module 02 · Day 05–09</div><div class="mod-name">Linux Admin for DevOps + GCP</div></div><div class="mod-ring"><svg width="46" height="46" viewBox="0 0 46 46"><circle class="mrt" cx="23" cy="23" r="19"/><circle class="mrf" id="mr-m2" cx="23" cy="23" r="19" stroke-dasharray="119.4" stroke-dashoffset="119.4" stroke="var(--mc)"/></svg><div class="mrn" id="mp-m2">0%</div></div><div class="mod-chev">›</div></div>
-    <div class="mod-body"><div class="day-grid">
-      <div class="dc" onclick="tDay(this,'m2')"><div class="dc-check">✓</div><div class="dc-day">Day 05</div><div class="dc-title">Linux Overview & GCP Setup</div><div class="dc-chips"><span class="dchip">Linux</span><span class="dchip">GCP</span><span class="dchip">Shell</span><span class="dchip">GitHub CLI</span></div><div class="dc-hint">tap to complete</div></div>
-      <div class="dc" onclick="tDay(this,'m2')"><div class="dc-check">✓</div><div class="dc-day">Day 06</div><div class="dc-title">Linux VM & User Administration</div><div class="dc-chips"><span class="dchip">VirtualBox</span><span class="dchip">VMware</span><span class="dchip">MobaXterm</span><span class="dchip">GCP VM</span></div><div class="dc-hint">tap to complete</div></div>
-      <div class="dc" onclick="tDay(this,'m2')"><div class="dc-check">✓</div><div class="dc-day">Day 07</div><div class="dc-title">Linux System Administration</div><div class="dc-chips"><span class="dchip">systemctl</span><span class="dchip">top/htop</span><span class="dchip">50+ Commands</span></div><div class="dc-hint">tap to complete</div></div>
-      <div class="dc" onclick="tDay(this,'m2')"><div class="dc-check">✓</div><div class="dc-day">Day 08</div><div class="dc-title">Permissions & Software Management</div><div class="dc-chips"><span class="dchip">SSH Keys</span><span class="dchip">YUM/APT</span><span class="dchip">SSH Config</span></div><div class="dc-hint">tap to complete</div></div>
-      <div class="dc" onclick="tDay(this,'m2')"><div class="dc-check">✓</div><div class="dc-day">Day 09</div><div class="dc-title">Linux Real-World Scenarios</div><div class="dc-chips"><span class="dchip">Troubleshooting</span><span class="dchip">H/W & S/W</span><span class="dchip">Q&A</span></div><div class="dc-hint">tap to complete</div></div>
-    </div>
-    <div class="ws-bar ws-green">💰 Can Start Applying GCP + Linux Jobs — 5 to 10 LPA</div>
-    <div class="ws-bar ws-blue" style="margin-top:6px">📝 Linux Quiz (LMS) — 8AM till ~20 Oct Week</div>
+<div class="section" id="sec-roadmap" style="background:linear-gradient(180deg,rgba(7,11,26,0.6) 0%,transparent 100%)">
+  <span class="section-anchor" id="roadmap"></span>
+  <div style="padding:50px 40px 10px;max-width:1300px;margin:0 auto">
+    <div class="sec-div" style="padding:0">
+      <div class="sec-div-line"></div>
+      <div class="sec-div-label">🗺️ Roadmap</div>
+      <div class="sec-div-line"></div>
     </div>
   </div>
-
-  <!-- M3 -->
-  <div class="mod" id="m3" style="--mc:#ff8c00">
-    <div class="mod-head" onclick="toggleMod('m3')"><div class="mod-accent" style="background:var(--mc)"></div><div class="mod-ico-wrap" style="background:rgba(255,140,0,0.12);border:1px solid rgba(255,140,0,0.2)">☁️</div><div class="mod-info"><div class="mod-tag" style="color:var(--mc)">Module 03 · Day 10–21</div><div class="mod-name">AWS Top 10 Services + 10+ Practicals</div></div><div class="mod-ring"><svg width="46" height="46" viewBox="0 0 46 46"><circle class="mrt" cx="23" cy="23" r="19"/><circle class="mrf" id="mr-m3" cx="23" cy="23" r="19" stroke-dasharray="119.4" stroke-dashoffset="119.4" stroke="var(--mc)"/></svg><div class="mrn" id="mp-m3">0%</div></div><div class="mod-chev">›</div></div>
-    <div class="mod-body"><div class="day-grid">
-      <div class="dc" onclick="tDay(this,'m3')"><div class="dc-check">✓</div><div class="dc-day">Day 10</div><div class="dc-title">AWS Introduction & EC2 Basics</div><div class="dc-chips"><span class="dchip">EC2</span><span class="dchip">Console</span><span class="dchip">Apache/Nginx</span><span class="dchip">Windows Server</span></div><div class="dc-hint">tap to complete</div></div>
-      <div class="dc" onclick="tDay(this,'m3')"><div class="dc-check">✓</div><div class="dc-day">Day 11</div><div class="dc-title">EC2 Scalability & AMI</div><div class="dc-chips"><span class="dchip">Auto Scaling</span><span class="dchip">AMI</span><span class="dchip">High Availability</span></div><div class="dc-hint">tap to complete</div></div>
-      <div class="dc" onclick="tDay(this,'m3')"><div class="dc-check">✓</div><div class="dc-day">Day 12</div><div class="dc-title">AWS IAM</div><div class="dc-chips"><span class="dchip">IAM</span><span class="dchip">Users/Groups</span><span class="dchip">Roles</span><span class="dchip">Policies</span></div><div class="dc-hint">tap to complete</div></div>
-      <div class="dc" onclick="tDay(this,'m3')"><div class="dc-check">✓</div><div class="dc-day">Day 13</div><div class="dc-title">EC2 Configuration & Storage</div><div class="dc-chips"><span class="dchip">EBS</span><span class="dchip">Snapshots</span><span class="dchip">Security Groups</span></div><div class="dc-hint">tap to complete</div></div>
-      <div class="dc" onclick="tDay(this,'m3')"><div class="dc-check">✓</div><div class="dc-day">Day 14</div><div class="dc-title">Elastic Load Balancer</div><div class="dc-chips"><span class="dchip">ELB</span><span class="dchip">Load Balancing</span><span class="dchip">HA</span></div><div class="dc-hint">tap to complete</div></div>
-      <div class="dc" onclick="tDay(this,'m3')"><div class="dc-check">✓</div><div class="dc-day">Day 15</div><div class="dc-title">Amazon S3 Storage</div><div class="dc-chips"><span class="dchip">S3</span><span class="dchip">Storage Classes</span><span class="dchip">Glacier</span></div><div class="dc-hint">tap to complete</div></div>
-      <div class="dc" onclick="tDay(this,'m3')"><div class="dc-check">✓</div><div class="dc-day">Day 16</div><div class="dc-title">S3 Static Website Hosting</div><div class="dc-chips"><span class="dchip">S3 Static</span><span class="dchip">Route 53</span><span class="dchip">DNS</span></div><div class="dc-hint">tap to complete</div></div>
-      <div class="dc" onclick="tDay(this,'m3')"><div class="dc-check">✓</div><div class="dc-day">Day 17</div><div class="dc-title">AWS Databases & RDS</div><div class="dc-chips"><span class="dchip">RDS</span><span class="dchip">PostgreSQL</span><span class="dchip">MySQL</span><span class="dchip">MSSQL</span></div><div class="dc-hint">tap to complete</div></div>
-      <div class="dc" onclick="tDay(this,'m3')"><div class="dc-check">✓</div><div class="dc-day">Day 18</div><div class="dc-title">AWS VPC & Networking</div><div class="dc-chips"><span class="dchip">VPC</span><span class="dchip">CIDR</span><span class="dchip">NACL</span><span class="dchip">Subnets</span></div><div class="dc-hint">tap to complete</div></div>
-      <div class="dc" onclick="tDay(this,'m3')"><div class="dc-check">✓</div><div class="dc-day">Day 19</div><div class="dc-title">VPC Practicals</div><div class="dc-chips"><span class="dchip">VPC Peering</span><span class="dchip">Security Groups</span><span class="dchip">2 Clouds</span></div><div class="dc-hint">tap to complete</div></div>
-      <div class="dc" onclick="tDay(this,'m3')"><div class="dc-check">✓</div><div class="dc-day">Day 20</div><div class="dc-title">AWS CloudWatch & Monitoring</div><div class="dc-chips"><span class="dchip">CloudWatch</span><span class="dchip">SNS</span><span class="dchip">Budget Alarm</span></div><div class="dc-hint">tap to complete</div></div>
-      <div class="dc" onclick="tDay(this,'m3')"><div class="dc-check">✓</div><div class="dc-day">Day 21</div><div class="dc-title">AWS Service Integrations (3+ Exp)</div><div class="dc-chips"><span class="dchip">Lambda</span><span class="dchip">SNS</span><span class="dchip">5+ AWS Services</span></div><div class="dc-hint">tap to complete</div></div>
+  <div class="rm-wrap">
+    <div class="sb">
+      <div class="sb-title">Module Navigator</div>
+      <button class="sb-btn" onclick="openMod('m1')"><span class="sb-ico">🌐</span><div class="sb-info"><div class="sb-name">Foundation + AI</div><div class="sb-sub">Day 01–04</div></div><div class="sb-dot" id="sd-m1"></div></button>
+      <button class="sb-btn" onclick="openMod('m2')"><span class="sb-ico">🐧</span><div class="sb-info"><div class="sb-name">Linux + GCP</div><div class="sb-sub">Day 05–09</div></div><div class="sb-dot" id="sd-m2"></div></button>
+      <button class="sb-btn" onclick="openMod('m3')"><span class="sb-ico">☁️</span><div class="sb-info"><div class="sb-name">AWS Services</div><div class="sb-sub">Day 10–21</div></div><div class="sb-dot" id="sd-m3"></div></button>
+      <button class="sb-btn" onclick="openMod('m4')"><span class="sb-ico">🔄</span><div class="sb-info"><div class="sb-name">Git + Jenkins</div><div class="sb-sub">Day 22–29</div></div><div class="sb-dot" id="sd-m4"></div></button>
+      <button class="sb-btn" onclick="openMod('m5')"><span class="sb-ico">🐳</span><div class="sb-info"><div class="sb-name">Docker + K8s + GKE</div><div class="sb-sub">Day 30–37</div></div><div class="sb-dot" id="sd-m5"></div></button>
+      <button class="sb-btn" onclick="openMod('m6')"><span class="sb-ico">📦</span><div class="sb-info"><div class="sb-name">Ansible + Terraform</div><div class="sb-sub">Day 38–46</div></div><div class="sb-dot" id="sd-m6"></div></button>
+      <button class="sb-btn" onclick="openMod('m7')"><span class="sb-ico">💙</span><div class="sb-info"><div class="sb-name">Azure + AI</div><div class="sb-sub">Day 47–49</div></div><div class="sb-dot" id="sd-m7"></div></button>
+      <button class="sb-btn" onclick="openMod('m8')"><span class="sb-ico">🚀</span><div class="sb-info"><div class="sb-name">Live Projects</div><div class="sb-sub">Day 50–58</div></div><div class="sb-dot" id="sd-m8"></div></button>
     </div>
-    <div class="ws-bar ws-orange">🏆 Workshop: Top 10 DevOps Tools + AWS Assessment</div>
-    <div class="ws-bar ws-red" style="margin-top:6px">🚀 PART 2 — THE DEVOPS JOURNEY BEGINS! (Starting 16th April 2026)</div>
-    </div>
-  </div>
-
-  <!-- M4 -->
-  <div class="mod" id="m4" style="--mc:#ff4fa0">
-    <div class="mod-head" onclick="toggleMod('m4')"><div class="mod-accent" style="background:var(--mc)"></div><div class="mod-ico-wrap" style="background:rgba(255,79,160,0.12);border:1px solid rgba(255,79,160,0.2)">🔄</div><div class="mod-info"><div class="mod-tag" style="color:var(--mc)">Module 04 · Day 22–29</div><div class="mod-name">Core CI/CD — Git, GitHub & Jenkins</div></div><div class="mod-ring"><svg width="46" height="46" viewBox="0 0 46 46"><circle class="mrt" cx="23" cy="23" r="19"/><circle class="mrf" id="mr-m4" cx="23" cy="23" r="19" stroke-dasharray="119.4" stroke-dashoffset="119.4" stroke="var(--mc)"/></svg><div class="mrn" id="mp-m4">0%</div></div><div class="mod-chev">›</div></div>
-    <div class="mod-body"><div class="day-grid">
-      <div class="dc" onclick="tDay(this,'m4')"><div class="dc-check">✓</div><div class="dc-day">Day 22</div><div class="dc-title">Git & GitHub Learning</div><div class="dc-chips"><span class="dchip">Git</span><span class="dchip">GitHub</span><span class="dchip">SCM</span><span class="dchip">Git Clone & Fork</span></div><div class="dc-hint">tap to complete</div></div>
-      <div class="dc" onclick="tDay(this,'m4')"><div class="dc-check">✓</div><div class="dc-day">Day 23</div><div class="dc-title">Git for Developers</div><div class="dc-chips"><span class="dchip">Branching</span><span class="dchip">Pull Requests</span><span class="dchip">Developer Workflow</span></div><div class="dc-hint">tap to complete</div></div>
-      <div class="dc" onclick="tDay(this,'m4')"><div class="dc-check">✓</div><div class="dc-day">Day 24</div><div class="dc-title">Jenkins Introduction & Setup</div><div class="dc-chips"><span class="dchip">Jenkins</span><span class="dchip">CI</span><span class="dchip">Java</span><span class="dchip">VS Code</span></div><div class="dc-hint">tap to complete</div></div>
-      <div class="dc" onclick="tDay(this,'m4')"><div class="dc-check">✓</div><div class="dc-day">Day 25</div><div class="dc-title">Jenkins Jobs & Maven</div><div class="dc-chips"><span class="dchip">Maven</span><span class="dchip">Spring Boot</span><span class="dchip">Freestyle Jobs</span></div><div class="dc-hint">tap to complete</div></div>
-      <div class="dc" onclick="tDay(this,'m4')"><div class="dc-check">✓</div><div class="dc-day">Day 26</div><div class="dc-title">Jenkins Pipelines</div><div class="dc-chips"><span class="dchip">Groovy Code</span><span class="dchip">Stages/Steps</span><span class="dchip">Declarative</span></div><div class="dc-hint">tap to complete</div></div>
-      <div class="dc" onclick="tDay(this,'m4')"><div class="dc-check">✓</div><div class="dc-day">Day 27</div><div class="dc-title">Jenkins Plugins</div><div class="dc-chips"><span class="dchip">Top 10 Plugins</span><span class="dchip">CI/CD Optimization</span></div><div class="dc-hint">tap to complete</div></div>
-      <div class="dc" onclick="tDay(this,'m4')"><div class="dc-check">✓</div><div class="dc-day">Day 28</div><div class="dc-title">Advanced Jenkins Jobs</div><div class="dc-chips"><span class="dchip">Java + Maven</span><span class="dchip">Job Management</span></div><div class="dc-hint">tap to complete</div></div>
-      <div class="dc" onclick="tDay(this,'m4')"><div class="dc-check">✓</div><div class="dc-day">Day 29</div><div class="dc-title">Jenkins Master-Slave (3+ Exp)</div><div class="dc-chips"><span class="dchip">Master-Slave</span><span class="dchip">Distributed Builds</span><span class="dchip">Windows+Linux</span></div><div class="dc-hint">tap to complete</div></div>
-    </div><div class="ws-bar ws-orange">⚡ Day 29 — Workshop: Development Activity + Development Assignment</div></div>
-  </div>
-
-  <!-- M5 -->
-  <div class="mod" id="m5" style="--mc:#22d3ee">
-    <div class="mod-head" onclick="toggleMod('m5')"><div class="mod-accent" style="background:var(--mc)"></div><div class="mod-ico-wrap" style="background:rgba(34,211,238,0.12);border:1px solid rgba(34,211,238,0.2)">🐳</div><div class="mod-info"><div class="mod-tag" style="color:var(--mc)">Module 05 · Day 30–37</div><div class="mod-name">Docker & Kubernetes + GKE + CM (3+ Exp)</div></div><div class="mod-ring"><svg width="46" height="46" viewBox="0 0 46 46"><circle class="mrt" cx="23" cy="23" r="19"/><circle class="mrf" id="mr-m5" cx="23" cy="23" r="19" stroke-dasharray="119.4" stroke-dashoffset="119.4" stroke="var(--mc)"/></svg><div class="mrn" id="mp-m5">0%</div></div><div class="mod-chev">›</div></div>
-    <div class="mod-body"><div class="day-grid">
-      <div class="dc" onclick="tDay(this,'m5')"><div class="dc-check">✓</div><div class="dc-day">Day 30</div><div class="dc-title">Docker Introduction</div><div class="dc-chips"><span class="dchip">Docker</span><span class="dchip">Containers</span><span class="dchip">Docker Hub</span></div><div class="dc-hint">tap to complete</div></div>
-      <div class="dc" onclick="tDay(this,'m5')"><div class="dc-check">✓</div><div class="dc-day">Day 31</div><div class="dc-title">Docker Installation & Basics</div><div class="dc-chips"><span class="dchip">Images</span><span class="dchip">Volumes</span><span class="dchip">Nginx</span><span class="dchip">Jenkins via Docker</span></div><div class="dc-hint">tap to complete</div></div>
-      <div class="dc" onclick="tDay(this,'m5')"><div class="dc-check">✓</div><div class="dc-day">Day 32</div><div class="dc-title">Docker Lifecycle & Dockerfile</div><div class="dc-chips"><span class="dchip">Dockerfile</span><span class="dchip">Build</span><span class="dchip">Tag & Push</span><span class="dchip">Troubleshooting</span></div><div class="dc-hint">tap to complete</div></div>
-      <div class="dc" onclick="tDay(this,'m5')"><div class="dc-check">✓</div><div class="dc-day">Day 33</div><div class="dc-title">Kubernetes Introduction</div><div class="dc-chips"><span class="dchip">K8s</span><span class="dchip">Kubectl</span><span class="dchip">Cluster Architecture</span></div><div class="dc-hint">tap to complete</div></div>
-      <div class="dc" onclick="tDay(this,'m5')"><div class="dc-check">✓</div><div class="dc-day">Day 34</div><div class="dc-title">Kubernetes Components & GKE</div><div class="dc-chips"><span class="dchip">Pods</span><span class="dchip">Deployments</span><span class="dchip">Services</span><span class="dchip">gcloud</span></div><div class="dc-hint">tap to complete</div></div>
-      <div class="dc" onclick="tDay(this,'m5')"><div class="dc-check">✓</div><div class="dc-day">Day 35</div><div class="dc-title">GKE E-Commerce Project</div><div class="dc-chips"><span class="dchip">GKE</span><span class="dchip">Microservices</span><span class="dchip">3-Node Cluster</span><span class="dchip">1-Click Deploy</span></div><div class="dc-hint">tap to complete</div></div>
-      <div class="dc" onclick="tDay(this,'m5')"><div class="dc-check">✓</div><div class="dc-day">Day 36</div><div class="dc-title">Prometheus & Grafana Introduction</div><div class="dc-chips"><span class="dchip">Prometheus</span><span class="dchip">Grafana</span><span class="dchip">Helm</span><span class="dchip">GKE 3-Node</span></div><div class="dc-hint">tap to complete</div></div>
-      <div class="dc" onclick="tDay(this,'m5')"><div class="dc-check">✓</div><div class="dc-day">Day 37</div><div class="dc-title">Grafana Dashboards</div><div class="dc-chips"><span class="dchip">Dashboards</span><span class="dchip">Visualization</span><span class="dchip">Import & Share</span></div><div class="dc-hint">tap to complete</div></div>
-    </div></div>
-  </div>
-
-  <!-- M6 -->
-  <div class="mod" id="m6" style="--mc:#a855f7">
-    <div class="mod-head" onclick="toggleMod('m6')"><div class="mod-accent" style="background:var(--mc)"></div><div class="mod-ico-wrap" style="background:rgba(168,85,247,0.12);border:1px solid rgba(168,85,247,0.2)">📦</div><div class="mod-info"><div class="mod-tag" style="color:var(--mc)">Module 06 · Day 38–46</div><div class="mod-name">Ansible & Terraform — IaC Automation (3+ Exp)</div></div><div class="mod-ring"><svg width="46" height="46" viewBox="0 0 46 46"><circle class="mrt" cx="23" cy="23" r="19"/><circle class="mrf" id="mr-m6" cx="23" cy="23" r="19" stroke-dasharray="119.4" stroke-dashoffset="119.4" stroke="var(--mc)"/></svg><div class="mrn" id="mp-m6">0%</div></div><div class="mod-chev">›</div></div>
-    <div class="mod-body"><div class="day-grid">
-      <div class="dc" onclick="tDay(this,'m6')"><div class="dc-check">✓</div><div class="dc-day">Day 38</div><div class="dc-title">Terraform Introduction</div><div class="dc-chips"><span class="dchip">Terraform</span><span class="dchip">HCL</span><span class="dchip">AWS/GCP/Azure</span><span class="dchip">Init/Plan/Apply</span></div><div class="dc-hint">tap to complete</div></div>
-      <div class="dc" onclick="tDay(this,'m6')"><div class="dc-check">✓</div><div class="dc-day">Day 39</div><div class="dc-title">Terraform AWS Resources</div><div class="dc-chips"><span class="dchip">EC2</span><span class="dchip">S3</span><span class="dchip">IAM</span><span class="dchip">EKS Cluster</span></div><div class="dc-hint">tap to complete</div></div>
-      <div class="dc" onclick="tDay(this,'m6')"><div class="dc-check">✓</div><div class="dc-day">Day 40</div><div class="dc-title">Ansible Introduction</div><div class="dc-chips"><span class="dchip">Ansible</span><span class="dchip">Playbooks</span><span class="dchip">Config Mgmt</span></div><div class="dc-hint">tap to complete</div></div>
-      <div class="dc" onclick="tDay(this,'m6')"><div class="dc-check">✓</div><div class="dc-day">Day 41</div><div class="dc-title">Ansible Architecture</div><div class="dc-chips"><span class="dchip">Inventory</span><span class="dchip">SSH</span><span class="dchip">Worker Nodes</span><span class="dchip">Master Setup</span></div><div class="dc-hint">tap to complete</div></div>
-      <div class="dc" onclick="tDay(this,'m6')"><div class="dc-check">✓</div><div class="dc-day">Day 42</div><div class="dc-title">Ansible Playbooks & Roles</div><div class="dc-chips"><span class="dchip">Galaxy</span><span class="dchip">Roles</span><span class="dchip">Infrastructure Setup</span></div><div class="dc-hint">tap to complete</div></div>
-      <div class="dc" onclick="tDay(this,'m6')"><div class="dc-check">✓</div><div class="dc-day">Day 43</div><div class="dc-title">Bash Scripting</div><div class="dc-chips"><span class="dchip">Bash</span><span class="dchip">Shell Scripts</span><span class="dchip">Automation</span><span class="dchip">5 Scripts</span></div><div class="dc-hint">tap to complete</div></div>
-      <div class="dc" onclick="tDay(this,'m6')"><div class="dc-check">✓</div><div class="dc-day">Day 44</div><div class="dc-title">Python for DevOps</div><div class="dc-chips"><span class="dchip">Python</span><span class="dchip">boto3</span><span class="dchip">AWS CLI</span><span class="dchip">S3 File Uploads</span></div><div class="dc-hint">tap to complete</div></div>
-      <div class="dc" onclick="tDay(this,'m6')"><div class="dc-check">✓</div><div class="dc-day">Day 45</div><div class="dc-title">ATS Resume Prep + Students Choice Topics</div><div class="dc-chips"><span class="dchip">ATS Resume</span><span class="dchip">Splunk</span><span class="dchip">Lambda</span><span class="dchip">Kafka/GitLab</span></div><div class="dc-hint">tap to complete</div></div>
-      <div class="dc" onclick="tDay(this,'m6')"><div class="dc-check">✓</div><div class="dc-day">Day 46</div><div class="dc-title">Students Most Demanded Session</div><div class="dc-chips"><span class="dchip">Chosen Topics</span><span class="dchip">Deep Dive</span><span class="dchip">Q&A</span></div><div class="dc-hint">tap to complete</div></div>
-    </div>
-    <div class="ws-bar ws-orange">⚡ Day 41 — Workshop: Terraform + Ansible SSH + Kubernetes</div>
-    <div class="ws-bar ws-blue" style="margin-top:6px">📝 Day 49 — Workshop: Prometheus/Grafana/Bash/Python Assessment</div>
-    </div>
-  </div>
-
-  <!-- M7 -->
-  <div class="mod" id="m7" style="--mc:#ffe066">
-    <div class="mod-head" onclick="toggleMod('m7')"><div class="mod-accent" style="background:var(--mc)"></div><div class="mod-ico-wrap" style="background:rgba(255,224,102,0.1);border:1px solid rgba(255,224,102,0.2)">💙</div><div class="mod-info"><div class="mod-tag" style="color:var(--mc)">Module 07 · Day 47–49</div><div class="mod-name">Azure DevOps + Realtime AI</div></div><div class="mod-ring"><svg width="46" height="46" viewBox="0 0 46 46"><circle class="mrt" cx="23" cy="23" r="19"/><circle class="mrf" id="mr-m7" cx="23" cy="23" r="19" stroke-dasharray="119.4" stroke-dashoffset="119.4" stroke="var(--mc)"/></svg><div class="mrn" id="mp-m7">0%</div></div><div class="mod-chev">›</div></div>
-    <div class="mod-body"><div class="day-grid">
-      <div class="dc" onclick="tDay(this,'m7')"><div class="dc-check">✓</div><div class="dc-day">Day 47</div><div class="dc-title">Azure Fundamentals + Azure DevOps</div><div class="dc-chips"><span class="dchip">Azure</span><span class="dchip">Azure DevOps</span><span class="dchip">Repos/Boards</span><span class="dchip">Pipelines</span></div><div class="dc-hint">tap to complete</div></div>
-      <div class="dc" onclick="tDay(this,'m7')"><div class="dc-check">✓</div><div class="dc-day">Day 48</div><div class="dc-title">Advance Prompt Engineering + Co-Programmer</div><div class="dc-chips"><span class="dchip">AI</span><span class="dchip">Gen AI</span><span class="dchip">AI vs Deep Learning</span><span class="dchip">Agentic AI</span></div><div class="dc-hint">tap to complete</div></div>
-      <div class="dc" onclick="tDay(this,'m7')"><div class="dc-check">✓</div><div class="dc-day">Day 49</div><div class="dc-title">AI + Generative AI + Copilot Setup</div><div class="dc-chips"><span class="dchip">AI Usecases</span><span class="dchip">RealTime AI</span><span class="dchip">Best AI Usecases</span></div><div class="dc-hint">tap to complete</div></div>
-    </div></div>
-  </div>
-
-  <!-- M8 (PROJECTS) -->
-  <div class="mod" id="m8" style="--mc:#10ffa0">
-    <div class="mod-head" onclick="toggleMod('m8')"><div class="mod-accent" style="background:var(--mc)"></div><div class="mod-ico-wrap" style="background:rgba(16,255,160,0.1);border:1px solid rgba(16,255,160,0.2)">🚀</div><div class="mod-info"><div class="mod-tag" style="color:var(--mc)">Module 08 · Day 50–58 · CAPSTONE</div><div class="mod-name">8 RealTime LIVE Projects + MLOPS + AI OPS</div></div><div class="mod-ring"><svg width="46" height="46" viewBox="0 0 46 46"><circle class="mrt" cx="23" cy="23" r="19"/><circle class="mrf" id="mr-m8" cx="23" cy="23" r="19" stroke-dasharray="119.4" stroke-dashoffset="119.4" stroke="var(--mc)"/></svg><div class="mrn" id="mp-m8">0%</div></div><div class="mod-chev">›</div></div>
-    <div class="mod-body"><div class="day-grid">
-      <div class="dc" onclick="tDay(this,'m8')"><div class="dc-check">✓</div><div class="dc-day">Day 50 · P1</div><div class="dc-title">Complete CI/CD Pipeline Automation</div><div class="dc-chips"><span class="dchip">Jenkins</span><span class="dchip">Docker</span><span class="dchip">Spring Boot</span><span class="dchip">GitHub</span></div><div class="dc-hint">tap to complete</div></div>
-      <div class="dc" onclick="tDay(this,'m8')"><div class="dc-check">✓</div><div class="dc-day">Day 51 · P2</div><div class="dc-title">Microservices Deployment on GKE</div><div class="dc-chips"><span class="dchip">GKE</span><span class="dchip">Kubernetes</span><span class="dchip">E-Commerce</span><span class="dchip">Java/Python</span></div><div class="dc-hint">tap to complete</div></div>
-      <div class="dc" onclick="tDay(this,'m8')"><div class="dc-check">✓</div><div class="dc-day">Day 52 · P3</div><div class="dc-title">AWS Infra with Terraform IaC</div><div class="dc-chips"><span class="dchip">Terraform</span><span class="dchip">AWS</span><span class="dchip">EC2/VPC/ELB/RDS</span></div><div class="dc-hint">tap to complete</div></div>
-      <div class="dc" onclick="tDay(this,'m8')"><div class="dc-check">✓</div><div class="dc-day">Day 53 · P4</div><div class="dc-title">DevSecOps Implementation</div><div class="dc-chips"><span class="dchip">Trivy</span><span class="dchip">SonarQube</span><span class="dchip">Online Quiz App</span></div><div class="dc-hint">tap to complete</div></div>
-      <div class="dc" onclick="tDay(this,'m8')"><div class="dc-check">✓</div><div class="dc-day">Day 54 · P5</div><div class="dc-title">Azure DevOps CI/CD Implementation</div><div class="dc-chips"><span class="dchip">Azure Repos</span><span class="dchip">Azure Boards</span><span class="dchip">Azure Pipelines</span></div><div class="dc-hint">tap to complete</div></div>
-      <div class="dc" onclick="tDay(this,'m8')"><div class="dc-check">✓</div><div class="dc-day">Day 55 · P6</div><div class="dc-title">AI API Integration from Cloud</div><div class="dc-chips"><span class="dchip">Python ATS</span><span class="dchip">AWS+GCP</span><span class="dchip">Gemini AI</span></div><div class="dc-hint">tap to complete</div></div>
-      <div class="dc" onclick="tDay(this,'m8')"><div class="dc-check">✓</div><div class="dc-day">Day 56 · P7</div><div class="dc-title">ML OPS in EKS</div><div class="dc-chips"><span class="dchip">Python</span><span class="dchip">AWS EC2 FAST API</span><span class="dchip">EKS Development</span></div><div class="dc-hint">tap to complete</div></div>
-      <div class="dc" onclick="tDay(this,'m8')"><div class="dc-check">✓</div><div class="dc-day">Day 57 · P8</div><div class="dc-title">AI OPS Automations</div><div class="dc-chips"><span class="dchip">AI OPS</span><span class="dchip">Azure Infra</span><span class="dchip">Python</span><span class="dchip">AI Dashboards</span></div><div class="dc-hint">tap to complete</div></div>
-    </div>
-    <div class="ws-bar ws-green">🎓 Day 58 — Q&A + Meet & Greet + Career Guidance + Networking Sessions</div>
-    <div class="ws-bar ws-blue" style="margin-top:6px">📅 Weekly Interview Prep — Every Wednesday 8 PM IST</div>
-    <div class="ws-bar ws-orange" style="margin-top:6px">📊 Multiple RealTime Projects Assessment</div>
-    </div>
-  </div>
-
-  </div><!-- modules -->
-</div><!-- rm-wrap -->
-<footer><div class="ft-logo">DevOps Mastery · Batch 43</div><div class="ft-links"><button onclick="showPage('home')">Home</button><button onclick="showPage('roadmap')">Roadmap</button><button onclick="showPage('projects')">Projects</button><button onclick="showPage('stack')">Stack</button><button onclick="showPage('progress')">Progress</button></div><div class="ft-copy">Multi-Cloud with AWS + DevOps with AI · clouddevopshub.com</div></footer>
+    <div>
+      <!-- M1 -->
+      <div class="mod open" id="m1" style="--mc:#4f7cff">
+        <div class="mod-head" onclick="toggleMod('m1')"><div class="mod-accent" style="background:var(--mc)"></div><div class="mod-ico-wrap" style="background:rgba(79,124,255,0.12);border:1px solid rgba(79,124,255,0.2)">🌐</div><div class="mod-info"><div class="mod-tag" style="color:var(--mc)">Module 01 · Day 01–04</div><div class="mod-name">Cloud & DevOps + AI Foundation</div></div><div class="mod-ring"><svg width="46" height="46" viewBox="0 0 46 46"><circle class="mrt" cx="23" cy="23" r="19"/><circle class="mrf" id="mr-m1" cx="23" cy="23" r="19" stroke-dasharray="119.4" stroke-dashoffset="119.4" stroke="var(--mc)"/></svg><div class="mrn" id="mp-m1">0%</div></div><div class="mod-chev">›</div></div>
+        <div class="mod-body"><div class="day-grid">
+          <div class="dc" onclick="tDay(this,'m1')"><div class="dc-check">✓</div><div class="dc-day">Day 01</div><div class="dc-title">DevOps Intro & Course Overview</div><div class="dc-chips"><span class="dchip">DevOps</span><span class="dchip">AWS</span><span class="dchip">Copilot</span><span class="dchip">Job Openings</span></div><div class="dc-hint">tap to complete</div></div>
+          <div class="dc" onclick="tDay(this,'m1')"><div class="dc-check">✓</div><div class="dc-day">Day 02</div><div class="dc-title">Cloud Computing & Virtualization</div><div class="dc-chips"><span class="dchip">IaaS</span><span class="dchip">PaaS</span><span class="dchip">SaaS</span><span class="dchip">Docker</span></div><div class="dc-hint">tap to complete</div></div>
+          <div class="dc" onclick="tDay(this,'m1')"><div class="dc-check">✓</div><div class="dc-day">Day 03</div><div class="dc-title">DevOps Principles & Practices</div><div class="dc-chips"><span class="dchip">CI/CD</span><span class="dchip">6 C's</span><span class="dchip">CICD/CT/CM/CB8</span></div><div class="dc-hint">tap to complete</div></div>
+          <div class="dc" onclick="tDay(this,'m1')"><div class="dc-check">✓</div><div class="dc-day">Day 04</div><div class="dc-title">Foundation of AI + Prompt Engineering</div><div class="dc-chips"><span class="dchip">AI</span><span class="dchip">Gen AI</span><span class="dchip">Agentic AI</span><span class="dchip">Copilot Setup</span></div><div class="dc-hint">tap to complete</div></div>
+        </div><div class="ws-bar ws-orange">🎯 Weekend Workshop after Foundation</div></div>
+      </div>
+      <!-- M2 -->
+      <div class="mod" id="m2" style="--mc:#10b981">
+        <div class="mod-head" onclick="toggleMod('m2')"><div class="mod-accent" style="background:var(--mc)"></div><div class="mod-ico-wrap" style="background:rgba(16,185,129,0.12);border:1px solid rgba(16,185,129,0.2)">🐧</div><div class="mod-info"><div class="mod-tag" style="color:var(--mc)">Module 02 · Day 05–09</div><div class="mod-name">Linux Admin for DevOps + GCP</div></div><div class="mod-ring"><svg width="46" height="46" viewBox="0 0 46 46"><circle class="mrt" cx="23" cy="23" r="19"/><circle class="mrf" id="mr-m2" cx="23" cy="23" r="19" stroke-dasharray="119.4" stroke-dashoffset="119.4" stroke="var(--mc)"/></svg><div class="mrn" id="mp-m2">0%</div></div><div class="mod-chev">›</div></div>
+        <div class="mod-body"><div class="day-grid">
+          <div class="dc" onclick="tDay(this,'m2')"><div class="dc-check">✓</div><div class="dc-day">Day 05</div><div class="dc-title">Linux Overview & GCP Setup</div><div class="dc-chips"><span class="dchip">Linux</span><span class="dchip">GCP</span><span class="dchip">Shell</span><span class="dchip">GitHub CLI</span></div><div class="dc-hint">tap to complete</div></div>
+          <div class="dc" onclick="tDay(this,'m2')"><div class="dc-check">✓</div><div class="dc-day">Day 06</div><div class="dc-title">Linux VM & User Administration</div><div class="dc-chips"><span class="dchip">VirtualBox</span><span class="dchip">VMware</span><span class="dchip">MobaXterm</span><span class="dchip">GCP VM</span></div><div class="dc-hint">tap to complete</div></div>
+          <div class="dc" onclick="tDay(this,'m2')"><div class="dc-check">✓</div><div class="dc-day">Day 07</div><div class="dc-title">Linux System Administration</div><div class="dc-chips"><span class="dchip">systemctl</span><span class="dchip">top/htop</span><span class="dchip">50+ Commands</span></div><div class="dc-hint">tap to complete</div></div>
+          <div class="dc" onclick="tDay(this,'m2')"><div class="dc-check">✓</div><div class="dc-day">Day 08</div><div class="dc-title">Permissions & Software Management</div><div class="dc-chips"><span class="dchip">SSH Keys</span><span class="dchip">YUM/APT</span><span class="dchip">SSH Config</span></div><div class="dc-hint">tap to complete</div></div>
+          <div class="dc" onclick="tDay(this,'m2')"><div class="dc-check">✓</div><div class="dc-day">Day 09</div><div class="dc-title">Linux Real-World Scenarios</div><div class="dc-chips"><span class="dchip">Troubleshooting</span><span class="dchip">H/W & S/W</span><span class="dchip">Q&A</span></div><div class="dc-hint">tap to complete</div></div>
+        </div>
+        <div class="ws-bar ws-green">💰 Can Start Applying GCP + Linux Jobs — 5 to 10 LPA</div>
+        <div class="ws-bar ws-blue" style="margin-top:6px">📝 Linux Quiz (LMS) — 8AM till ~20 Oct Week</div>
+        </div>
+      </div>
+      <!-- M3 -->
+      <div class="mod" id="m3" style="--mc:#ff8c00">
+        <div class="mod-head" onclick="toggleMod('m3')"><div class="mod-accent" style="background:var(--mc)"></div><div class="mod-ico-wrap" style="background:rgba(255,140,0,0.12);border:1px solid rgba(255,140,0,0.2)">☁️</div><div class="mod-info"><div class="mod-tag" style="color:var(--mc)">Module 03 · Day 10–21</div><div class="mod-name">AWS Top 10 Services + 10+ Practicals</div></div><div class="mod-ring"><svg width="46" height="46" viewBox="0 0 46 46"><circle class="mrt" cx="23" cy="23" r="19"/><circle class="mrf" id="mr-m3" cx="23" cy="23" r="19" stroke-dasharray="119.4" stroke-dashoffset="119.4" stroke="var(--mc)"/></svg><div class="mrn" id="mp-m3">0%</div></div><div class="mod-chev">›</div></div>
+        <div class="mod-body"><div class="day-grid">
+          <div class="dc" onclick="tDay(this,'m3')"><div class="dc-check">✓</div><div class="dc-day">Day 10</div><div class="dc-title">AWS Introduction & EC2 Basics</div><div class="dc-chips"><span class="dchip">EC2</span><span class="dchip">Console</span><span class="dchip">Apache/Nginx</span><span class="dchip">Windows Server</span></div><div class="dc-hint">tap to complete</div></div>
+          <div class="dc" onclick="tDay(this,'m3')"><div class="dc-check">✓</div><div class="dc-day">Day 11</div><div class="dc-title">EC2 Scalability & AMI</div><div class="dc-chips"><span class="dchip">Auto Scaling</span><span class="dchip">AMI</span><span class="dchip">High Availability</span></div><div class="dc-hint">tap to complete</div></div>
+          <div class="dc" onclick="tDay(this,'m3')"><div class="dc-check">✓</div><div class="dc-day">Day 12</div><div class="dc-title">AWS IAM</div><div class="dc-chips"><span class="dchip">IAM</span><span class="dchip">Users/Groups</span><span class="dchip">Roles</span><span class="dchip">Policies</span></div><div class="dc-hint">tap to complete</div></div>
+          <div class="dc" onclick="tDay(this,'m3')"><div class="dc-check">✓</div><div class="dc-day">Day 13</div><div class="dc-title">EC2 Configuration & Storage</div><div class="dc-chips"><span class="dchip">EBS</span><span class="dchip">Snapshots</span><span class="dchip">Security Groups</span></div><div class="dc-hint">tap to complete</div></div>
+          <div class="dc" onclick="tDay(this,'m3')"><div class="dc-check">✓</div><div class="dc-day">Day 14</div><div class="dc-title">Elastic Load Balancer</div><div class="dc-chips"><span class="dchip">ELB</span><span class="dchip">Load Balancing</span><span class="dchip">HA</span></div><div class="dc-hint">tap to complete</div></div>
+          <div class="dc" onclick="tDay(this,'m3')"><div class="dc-check">✓</div><div class="dc-day">Day 15</div><div class="dc-title">Amazon S3 Storage</div><div class="dc-chips"><span class="dchip">S3</span><span class="dchip">Storage Classes</span><span class="dchip">Glacier</span></div><div class="dc-hint">tap to complete</div></div>
+          <div class="dc" onclick="tDay(this,'m3')"><div class="dc-check">✓</div><div class="dc-day">Day 16</div><div class="dc-title">S3 Static Website Hosting</div><div class="dc-chips"><span class="dchip">S3 Static</span><span class="dchip">Route 53</span><span class="dchip">DNS</span></div><div class="dc-hint">tap to complete</div></div>
+          <div class="dc" onclick="tDay(this,'m3')"><div class="dc-check">✓</div><div class="dc-day">Day 17</div><div class="dc-title">AWS Databases & RDS</div><div class="dc-chips"><span class="dchip">RDS</span><span class="dchip">PostgreSQL</span><span class="dchip">MySQL</span><span class="dchip">MSSQL</span></div><div class="dc-hint">tap to complete</div></div>
+          <div class="dc" onclick="tDay(this,'m3')"><div class="dc-check">✓</div><div class="dc-day">Day 18</div><div class="dc-title">AWS VPC & Networking</div><div class="dc-chips"><span class="dchip">VPC</span><span class="dchip">CIDR</span><span class="dchip">NACL</span><span class="dchip">Subnets</span></div><div class="dc-hint">tap to complete</div></div>
+          <div class="dc" onclick="tDay(this,'m3')"><div class="dc-check">✓</div><div class="dc-day">Day 19</div><div class="dc-title">VPC Practicals</div><div class="dc-chips"><span class="dchip">VPC Peering</span><span class="dchip">Security Groups</span><span class="dchip">2 Clouds</span></div><div class="dc-hint">tap to complete</div></div>
+          <div class="dc" onclick="tDay(this,'m3')"><div class="dc-check">✓</div><div class="dc-day">Day 20</div><div class="dc-title">AWS CloudWatch & Monitoring</div><div class="dc-chips"><span class="dchip">CloudWatch</span><span class="dchip">SNS</span><span class="dchip">Budget Alarm</span></div><div class="dc-hint">tap to complete</div></div>
+          <div class="dc" onclick="tDay(this,'m3')"><div class="dc-check">✓</div><div class="dc-day">Day 21</div><div class="dc-title">AWS Service Integrations (3+ Exp)</div><div class="dc-chips"><span class="dchip">Lambda</span><span class="dchip">SNS</span><span class="dchip">5+ AWS Services</span></div><div class="dc-hint">tap to complete</div></div>
+        </div>
+        <div class="ws-bar ws-orange">🏆 Workshop: Top 10 DevOps Tools + AWS Assessment</div>
+        <div class="ws-bar ws-red" style="margin-top:6px">🚀 PART 2 — THE DEVOPS JOURNEY BEGINS! (Starting 16th April 2026)</div>
+        </div>
+      </div>
+      <!-- M4 -->
+      <div class="mod" id="m4" style="--mc:#ff4fa0">
+        <div class="mod-head" onclick="toggleMod('m4')"><div class="mod-accent" style="background:var(--mc)"></div><div class="mod-ico-wrap" style="background:rgba(255,79,160,0.12);border:1px solid rgba(255,79,160,0.2)">🔄</div><div class="mod-info"><div class="mod-tag" style="color:var(--mc)">Module 04 · Day 22–29</div><div class="mod-name">Core CI/CD — Git, GitHub & Jenkins</div></div><div class="mod-ring"><svg width="46" height="46" viewBox="0 0 46 46"><circle class="mrt" cx="23" cy="23" r="19"/><circle class="mrf" id="mr-m4" cx="23" cy="23" r="19" stroke-dasharray="119.4" stroke-dashoffset="119.4" stroke="var(--mc)"/></svg><div class="mrn" id="mp-m4">0%</div></div><div class="mod-chev">›</div></div>
+        <div class="mod-body"><div class="day-grid">
+          <div class="dc" onclick="tDay(this,'m4')"><div class="dc-check">✓</div><div class="dc-day">Day 22</div><div class="dc-title">Git & GitHub Learning</div><div class="dc-chips"><span class="dchip">Git</span><span class="dchip">GitHub</span><span class="dchip">SCM</span><span class="dchip">Git Clone & Fork</span></div><div class="dc-hint">tap to complete</div></div>
+          <div class="dc" onclick="tDay(this,'m4')"><div class="dc-check">✓</div><div class="dc-day">Day 23</div><div class="dc-title">Git for Developers</div><div class="dc-chips"><span class="dchip">Branching</span><span class="dchip">Pull Requests</span><span class="dchip">Developer Workflow</span></div><div class="dc-hint">tap to complete</div></div>
+          <div class="dc" onclick="tDay(this,'m4')"><div class="dc-check">✓</div><div class="dc-day">Day 24</div><div class="dc-title">Jenkins Introduction & Setup</div><div class="dc-chips"><span class="dchip">Jenkins</span><span class="dchip">CI</span><span class="dchip">Java</span><span class="dchip">VS Code</span></div><div class="dc-hint">tap to complete</div></div>
+          <div class="dc" onclick="tDay(this,'m4')"><div class="dc-check">✓</div><div class="dc-day">Day 25</div><div class="dc-title">Jenkins Jobs & Maven</div><div class="dc-chips"><span class="dchip">Maven</span><span class="dchip">Spring Boot</span><span class="dchip">Freestyle Jobs</span></div><div class="dc-hint">tap to complete</div></div>
+          <div class="dc" onclick="tDay(this,'m4')"><div class="dc-check">✓</div><div class="dc-day">Day 26</div><div class="dc-title">Jenkins Pipelines</div><div class="dc-chips"><span class="dchip">Groovy Code</span><span class="dchip">Stages/Steps</span><span class="dchip">Declarative</span></div><div class="dc-hint">tap to complete</div></div>
+          <div class="dc" onclick="tDay(this,'m4')"><div class="dc-check">✓</div><div class="dc-day">Day 27</div><div class="dc-title">Jenkins Plugins</div><div class="dc-chips"><span class="dchip">Top 10 Plugins</span><span class="dchip">CI/CD Optimization</span></div><div class="dc-hint">tap to complete</div></div>
+          <div class="dc" onclick="tDay(this,'m4')"><div class="dc-check">✓</div><div class="dc-day">Day 28</div><div class="dc-title">Advanced Jenkins Jobs</div><div class="dc-chips"><span class="dchip">Java + Maven</span><span class="dchip">Job Management</span></div><div class="dc-hint">tap to complete</div></div>
+          <div class="dc" onclick="tDay(this,'m4')"><div class="dc-check">✓</div><div class="dc-day">Day 29</div><div class="dc-title">Jenkins Master-Slave (3+ Exp)</div><div class="dc-chips"><span class="dchip">Master-Slave</span><span class="dchip">Distributed Builds</span><span class="dchip">Windows+Linux</span></div><div class="dc-hint">tap to complete</div></div>
+        </div><div class="ws-bar ws-orange">⚡ Day 29 — Workshop: Development Activity + Development Assignment</div></div>
+      </div>
+      <!-- M5 -->
+      <div class="mod" id="m5" style="--mc:#22d3ee">
+        <div class="mod-head" onclick="toggleMod('m5')"><div class="mod-accent" style="background:var(--mc)"></div><div class="mod-ico-wrap" style="background:rgba(34,211,238,0.12);border:1px solid rgba(34,211,238,0.2)">🐳</div><div class="mod-info"><div class="mod-tag" style="color:var(--mc)">Module 05 · Day 30–37</div><div class="mod-name">Docker & Kubernetes + GKE + CM (3+ Exp)</div></div><div class="mod-ring"><svg width="46" height="46" viewBox="0 0 46 46"><circle class="mrt" cx="23" cy="23" r="19"/><circle class="mrf" id="mr-m5" cx="23" cy="23" r="19" stroke-dasharray="119.4" stroke-dashoffset="119.4" stroke="var(--mc)"/></svg><div class="mrn" id="mp-m5">0%</div></div><div class="mod-chev">›</div></div>
+        <div class="mod-body"><div class="day-grid">
+          <div class="dc" onclick="tDay(this,'m5')"><div class="dc-check">✓</div><div class="dc-day">Day 30</div><div class="dc-title">Docker Introduction</div><div class="dc-chips"><span class="dchip">Docker</span><span class="dchip">Containers</span><span class="dchip">Docker Hub</span></div><div class="dc-hint">tap to complete</div></div>
+          <div class="dc" onclick="tDay(this,'m5')"><div class="dc-check">✓</div><div class="dc-day">Day 31</div><div class="dc-title">Docker Installation & Basics</div><div class="dc-chips"><span class="dchip">Images</span><span class="dchip">Volumes</span><span class="dchip">Nginx</span><span class="dchip">Jenkins via Docker</span></div><div class="dc-hint">tap to complete</div></div>
+          <div class="dc" onclick="tDay(this,'m5')"><div class="dc-check">✓</div><div class="dc-day">Day 32</div><div class="dc-title">Docker Lifecycle & Dockerfile</div><div class="dc-chips"><span class="dchip">Dockerfile</span><span class="dchip">Build</span><span class="dchip">Tag & Push</span><span class="dchip">Troubleshooting</span></div><div class="dc-hint">tap to complete</div></div>
+          <div class="dc" onclick="tDay(this,'m5')"><div class="dc-check">✓</div><div class="dc-day">Day 33</div><div class="dc-title">Kubernetes Introduction</div><div class="dc-chips"><span class="dchip">K8s</span><span class="dchip">Kubectl</span><span class="dchip">Cluster Architecture</span></div><div class="dc-hint">tap to complete</div></div>
+          <div class="dc" onclick="tDay(this,'m5')"><div class="dc-check">✓</div><div class="dc-day">Day 34</div><div class="dc-title">Kubernetes Components & GKE</div><div class="dc-chips"><span class="dchip">Pods</span><span class="dchip">Deployments</span><span class="dchip">Services</span><span class="dchip">gcloud</span></div><div class="dc-hint">tap to complete</div></div>
+          <div class="dc" onclick="tDay(this,'m5')"><div class="dc-check">✓</div><div class="dc-day">Day 35</div><div class="dc-title">GKE E-Commerce Project</div><div class="dc-chips"><span class="dchip">GKE</span><span class="dchip">Microservices</span><span class="dchip">3-Node Cluster</span><span class="dchip">1-Click Deploy</span></div><div class="dc-hint">tap to complete</div></div>
+          <div class="dc" onclick="tDay(this,'m5')"><div class="dc-check">✓</div><div class="dc-day">Day 36</div><div class="dc-title">Prometheus & Grafana Introduction</div><div class="dc-chips"><span class="dchip">Prometheus</span><span class="dchip">Grafana</span><span class="dchip">Helm</span><span class="dchip">GKE 3-Node</span></div><div class="dc-hint">tap to complete</div></div>
+          <div class="dc" onclick="tDay(this,'m5')"><div class="dc-check">✓</div><div class="dc-day">Day 37</div><div class="dc-title">Grafana Dashboards</div><div class="dc-chips"><span class="dchip">Dashboards</span><span class="dchip">Visualization</span><span class="dchip">Import & Share</span></div><div class="dc-hint">tap to complete</div></div>
+        </div></div>
+      </div>
+      <!-- M6 -->
+      <div class="mod" id="m6" style="--mc:#a855f7">
+        <div class="mod-head" onclick="toggleMod('m6')"><div class="mod-accent" style="background:var(--mc)"></div><div class="mod-ico-wrap" style="background:rgba(168,85,247,0.12);border:1px solid rgba(168,85,247,0.2)">📦</div><div class="mod-info"><div class="mod-tag" style="color:var(--mc)">Module 06 · Day 38–46</div><div class="mod-name">Ansible & Terraform — IaC Automation (3+ Exp)</div></div><div class="mod-ring"><svg width="46" height="46" viewBox="0 0 46 46"><circle class="mrt" cx="23" cy="23" r="19"/><circle class="mrf" id="mr-m6" cx="23" cy="23" r="19" stroke-dasharray="119.4" stroke-dashoffset="119.4" stroke="var(--mc)"/></svg><div class="mrn" id="mp-m6">0%</div></div><div class="mod-chev">›</div></div>
+        <div class="mod-body"><div class="day-grid">
+          <div class="dc" onclick="tDay(this,'m6')"><div class="dc-check">✓</div><div class="dc-day">Day 38</div><div class="dc-title">Terraform Introduction</div><div class="dc-chips"><span class="dchip">Terraform</span><span class="dchip">HCL</span><span class="dchip">AWS/GCP/Azure</span><span class="dchip">Init/Plan/Apply</span></div><div class="dc-hint">tap to complete</div></div>
+          <div class="dc" onclick="tDay(this,'m6')"><div class="dc-check">✓</div><div class="dc-day">Day 39</div><div class="dc-title">Terraform AWS Resources</div><div class="dc-chips"><span class="dchip">EC2</span><span class="dchip">S3</span><span class="dchip">IAM</span><span class="dchip">EKS Cluster</span></div><div class="dc-hint">tap to complete</div></div>
+          <div class="dc" onclick="tDay(this,'m6')"><div class="dc-check">✓</div><div class="dc-day">Day 40</div><div class="dc-title">Ansible Introduction</div><div class="dc-chips"><span class="dchip">Ansible</span><span class="dchip">Playbooks</span><span class="dchip">Config Mgmt</span></div><div class="dc-hint">tap to complete</div></div>
+          <div class="dc" onclick="tDay(this,'m6')"><div class="dc-check">✓</div><div class="dc-day">Day 41</div><div class="dc-title">Ansible Architecture</div><div class="dc-chips"><span class="dchip">Inventory</span><span class="dchip">SSH</span><span class="dchip">Worker Nodes</span><span class="dchip">Master Setup</span></div><div class="dc-hint">tap to complete</div></div>
+          <div class="dc" onclick="tDay(this,'m6')"><div class="dc-check">✓</div><div class="dc-day">Day 42</div><div class="dc-title">Ansible Playbooks & Roles</div><div class="dc-chips"><span class="dchip">Galaxy</span><span class="dchip">Roles</span><span class="dchip">Infrastructure Setup</span></div><div class="dc-hint">tap to complete</div></div>
+          <div class="dc" onclick="tDay(this,'m6')"><div class="dc-check">✓</div><div class="dc-day">Day 43</div><div class="dc-title">Bash Scripting</div><div class="dc-chips"><span class="dchip">Bash</span><span class="dchip">Shell Scripts</span><span class="dchip">Automation</span><span class="dchip">5 Scripts</span></div><div class="dc-hint">tap to complete</div></div>
+          <div class="dc" onclick="tDay(this,'m6')"><div class="dc-check">✓</div><div class="dc-day">Day 44</div><div class="dc-title">Python for DevOps</div><div class="dc-chips"><span class="dchip">Python</span><span class="dchip">boto3</span><span class="dchip">AWS CLI</span><span class="dchip">S3 File Uploads</span></div><div class="dc-hint">tap to complete</div></div>
+          <div class="dc" onclick="tDay(this,'m6')"><div class="dc-check">✓</div><div class="dc-day">Day 45</div><div class="dc-title">ATS Resume Prep + Students Choice Topics</div><div class="dc-chips"><span class="dchip">ATS Resume</span><span class="dchip">Splunk</span><span class="dchip">Lambda</span><span class="dchip">Kafka/GitLab</span></div><div class="dc-hint">tap to complete</div></div>
+          <div class="dc" onclick="tDay(this,'m6')"><div class="dc-check">✓</div><div class="dc-day">Day 46</div><div class="dc-title">Students Most Demanded Session</div><div class="dc-chips"><span class="dchip">Chosen Topics</span><span class="dchip">Deep Dive</span><span class="dchip">Q&A</span></div><div class="dc-hint">tap to complete</div></div>
+        </div>
+        <div class="ws-bar ws-orange">⚡ Day 41 — Workshop: Terraform + Ansible SSH + Kubernetes</div>
+        <div class="ws-bar ws-blue" style="margin-top:6px">📝 Day 49 — Workshop: Prometheus/Grafana/Bash/Python Assessment</div>
+        </div>
+      </div>
+      <!-- M7 -->
+      <div class="mod" id="m7" style="--mc:#ffe066">
+        <div class="mod-head" onclick="toggleMod('m7')"><div class="mod-accent" style="background:var(--mc)"></div><div class="mod-ico-wrap" style="background:rgba(255,224,102,0.1);border:1px solid rgba(255,224,102,0.2)">💙</div><div class="mod-info"><div class="mod-tag" style="color:var(--mc)">Module 07 · Day 47–49</div><div class="mod-name">Azure DevOps + Realtime AI</div></div><div class="mod-ring"><svg width="46" height="46" viewBox="0 0 46 46"><circle class="mrt" cx="23" cy="23" r="19"/><circle class="mrf" id="mr-m7" cx="23" cy="23" r="19" stroke-dasharray="119.4" stroke-dashoffset="119.4" stroke="var(--mc)"/></svg><div class="mrn" id="mp-m7">0%</div></div><div class="mod-chev">›</div></div>
+        <div class="mod-body"><div class="day-grid">
+          <div class="dc" onclick="tDay(this,'m7')"><div class="dc-check">✓</div><div class="dc-day">Day 47</div><div class="dc-title">Azure Fundamentals + Azure DevOps</div><div class="dc-chips"><span class="dchip">Azure</span><span class="dchip">Azure DevOps</span><span class="dchip">Repos/Boards</span><span class="dchip">Pipelines</span></div><div class="dc-hint">tap to complete</div></div>
+          <div class="dc" onclick="tDay(this,'m7')"><div class="dc-check">✓</div><div class="dc-day">Day 48</div><div class="dc-title">Advance Prompt Engineering + Co-Programmer</div><div class="dc-chips"><span class="dchip">AI</span><span class="dchip">Gen AI</span><span class="dchip">AI vs Deep Learning</span><span class="dchip">Agentic AI</span></div><div class="dc-hint">tap to complete</div></div>
+          <div class="dc" onclick="tDay(this,'m7')"><div class="dc-check">✓</div><div class="dc-day">Day 49</div><div class="dc-title">AI + Generative AI + Copilot Setup</div><div class="dc-chips"><span class="dchip">AI Usecases</span><span class="dchip">RealTime AI</span><span class="dchip">Best AI Usecases</span></div><div class="dc-hint">tap to complete</div></div>
+        </div></div>
+      </div>
+      <!-- M8 -->
+      <div class="mod" id="m8" style="--mc:#10ffa0">
+        <div class="mod-head" onclick="toggleMod('m8')"><div class="mod-accent" style="background:var(--mc)"></div><div class="mod-ico-wrap" style="background:rgba(16,255,160,0.1);border:1px solid rgba(16,255,160,0.2)">🚀</div><div class="mod-info"><div class="mod-tag" style="color:var(--mc)">Module 08 · Day 50–58 · CAPSTONE</div><div class="mod-name">8 RealTime LIVE Projects + MLOPS + AI OPS</div></div><div class="mod-ring"><svg width="46" height="46" viewBox="0 0 46 46"><circle class="mrt" cx="23" cy="23" r="19"/><circle class="mrf" id="mr-m8" cx="23" cy="23" r="19" stroke-dasharray="119.4" stroke-dashoffset="119.4" stroke="var(--mc)"/></svg><div class="mrn" id="mp-m8">0%</div></div><div class="mod-chev">›</div></div>
+        <div class="mod-body"><div class="day-grid">
+          <div class="dc" onclick="tDay(this,'m8')"><div class="dc-check">✓</div><div class="dc-day">Day 50 · P1</div><div class="dc-title">Complete CI/CD Pipeline Automation</div><div class="dc-chips"><span class="dchip">Jenkins</span><span class="dchip">Docker</span><span class="dchip">Spring Boot</span><span class="dchip">GitHub</span></div><div class="dc-hint">tap to complete</div></div>
+          <div class="dc" onclick="tDay(this,'m8')"><div class="dc-check">✓</div><div class="dc-day">Day 51 · P2</div><div class="dc-title">Microservices Deployment on GKE</div><div class="dc-chips"><span class="dchip">GKE</span><span class="dchip">Kubernetes</span><span class="dchip">E-Commerce</span><span class="dchip">Java/Python</span></div><div class="dc-hint">tap to complete</div></div>
+          <div class="dc" onclick="tDay(this,'m8')"><div class="dc-check">✓</div><div class="dc-day">Day 52 · P3</div><div class="dc-title">AWS Infra with Terraform IaC</div><div class="dc-chips"><span class="dchip">Terraform</span><span class="dchip">AWS</span><span class="dchip">EC2/VPC/ELB/RDS</span></div><div class="dc-hint">tap to complete</div></div>
+          <div class="dc" onclick="tDay(this,'m8')"><div class="dc-check">✓</div><div class="dc-day">Day 53 · P4</div><div class="dc-title">DevSecOps Implementation</div><div class="dc-chips"><span class="dchip">Trivy</span><span class="dchip">SonarQube</span><span class="dchip">Online Quiz App</span></div><div class="dc-hint">tap to complete</div></div>
+          <div class="dc" onclick="tDay(this,'m8')"><div class="dc-check">✓</div><div class="dc-day">Day 54 · P5</div><div class="dc-title">Azure DevOps CI/CD Implementation</div><div class="dc-chips"><span class="dchip">Azure Repos</span><span class="dchip">Azure Boards</span><span class="dchip">Azure Pipelines</span></div><div class="dc-hint">tap to complete</div></div>
+          <div class="dc" onclick="tDay(this,'m8')"><div class="dc-check">✓</div><div class="dc-day">Day 55 · P6</div><div class="dc-title">AI API Integration from Cloud</div><div class="dc-chips"><span class="dchip">Python ATS</span><span class="dchip">AWS+GCP</span><span class="dchip">Gemini AI</span></div><div class="dc-hint">tap to complete</div></div>
+          <div class="dc" onclick="tDay(this,'m8')"><div class="dc-check">✓</div><div class="dc-day">Day 56 · P7</div><div class="dc-title">ML OPS in EKS</div><div class="dc-chips"><span class="dchip">Python</span><span class="dchip">AWS EC2 FAST API</span><span class="dchip">EKS Development</span></div><div class="dc-hint">tap to complete</div></div>
+          <div class="dc" onclick="tDay(this,'m8')"><div class="dc-check">✓</div><div class="dc-day">Day 57 · P8</div><div class="dc-title">AI OPS Automations</div><div class="dc-chips"><span class="dchip">AI OPS</span><span class="dchip">Azure Infra</span><span class="dchip">Python</span><span class="dchip">AI Dashboards</span></div><div class="dc-hint">tap to complete</div></div>
+        </div>
+        <div class="ws-bar ws-green">🎓 Day 58 — Q&A + Meet & Greet + Career Guidance + Networking Sessions</div>
+        <div class="ws-bar ws-blue" style="margin-top:6px">📅 Weekly Interview Prep — Every Wednesday 8 PM IST</div>
+        <div class="ws-bar ws-orange" style="margin-top:6px">📊 Multiple RealTime Projects Assessment</div>
+        </div>
+      </div>
+    </div><!-- modules -->
+  </div><!-- rm-wrap -->
 </div>
 
 <!-- ════════════ PROJECTS ════════════ -->
-<div class="pg" id="pg-projects">
-<div class="pg-inner">
-  <div class="page-head">
-    <div class="ph-ey">Capstone · MNC-Style Portfolio</div>
-    <h1 class="ph-h1">8 <span style="background:linear-gradient(135deg,var(--orange),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Live Projects</span> 🏆</h1>
-    <p class="ph-sub">Real production-grade projects for your resume. Click each card to mark it complete.</p>
+<div class="section" id="sec-projects" style="background:linear-gradient(180deg,rgba(7,11,26,0.4) 0%,transparent 100%)">
+  <span class="section-anchor" id="projects"></span>
+  <div style="padding:30px 40px 10px;max-width:1300px;margin:0 auto">
+    <div class="sec-div" style="padding:0"><div class="sec-div-line"></div><div class="sec-div-label">🏆 Projects</div><div class="sec-div-line"></div></div>
   </div>
-  <div class="sum-bar"><div><span class="sv" id="pDone" style="color:var(--green)">0</span><span class="sl">Completed</span></div><div><span class="sv">8</span><span class="sl">Total</span></div><div><span class="sv" id="pPct" style="color:var(--orange)">0%</span><span class="sl">Done</span></div></div>
-  <div class="proj-grid">
-    <div class="pc" onclick="tProj(this)"><div class="pc-num">01</div><div class="pc-done-badge">✓ DONE</div><div class="pc-ico" style="background:rgba(79,124,255,.12);border:1px solid rgba(79,124,255,.2)">🔄</div><div class="pc-label">Project 01 · CI/CD</div><div class="pc-title">Complete CI/CD Pipeline Automation</div><div class="pc-desc">CI/CD Pipeline for Java Spring Boot | GitHub + Jenkins CI + Jenkinsfile + Docker → Deploy to Remote Machine</div><div class="pc-tags"><span class="ptag">Jenkins</span><span class="ptag">Docker</span><span class="ptag">Spring Boot</span><span class="ptag">GitHub</span></div><div class="pc-stack">Stack: Jenkins, Docker, CI/CD, Spring Boot, GitHub</div></div>
-    <div class="pc" onclick="tProj(this)"><div class="pc-num">02</div><div class="pc-done-badge">✓ DONE</div><div class="pc-ico" style="background:rgba(34,211,238,.12);border:1px solid rgba(34,211,238,.2)">☸️</div><div class="pc-label">Project 02 · Microservices</div><div class="pc-title">Microservices Deployment on GKE</div><div class="pc-desc">E-commerce using Java/Python/Go/.NET | GKE Kubernetes Cluster | Scalability & High Availability</div><div class="pc-tags"><span class="ptag">GKE</span><span class="ptag">Kubernetes</span><span class="ptag">Microservices</span><span class="ptag">E-Commerce</span></div><div class="pc-stack">Stack: Microservices, GKE, Kubernetes, E-commerce</div></div>
-    <div class="pc" onclick="tProj(this)"><div class="pc-num">03</div><div class="pc-done-badge">✓ DONE</div><div class="pc-ico" style="background:rgba(255,140,0,.12);border:1px solid rgba(255,140,0,.2)">📦</div><div class="pc-label">Project 03 · IaC + AWS</div><div class="pc-title">AWS Infrastructure with Terraform IaC</div><div class="pc-desc">Provision 40 AWS Resources | EC2, VPC, ELB, Auto Scaling, RDS, EIP, Subnets | Infrastructure as Code</div><div class="pc-tags"><span class="ptag">Terraform</span><span class="ptag">AWS</span><span class="ptag">IaC</span><span class="ptag">VPC</span><span class="ptag">RDS</span></div><div class="pc-stack">Stack: Terraform, AWS, IaC, EC2, VPC, RDS</div></div>
-    <div class="pc" onclick="tProj(this)"><div class="pc-num">04</div><div class="pc-done-badge">✓ DONE</div><div class="pc-ico" style="background:rgba(255,68,68,.12);border:1px solid rgba(255,68,68,.2)">🔐</div><div class="pc-label">Project 04 · DevSecOps</div><div class="pc-title">DevSecOps Implementation</div><div class="pc-desc">Trivy + Docker + SonarQube | Online Quiz Application | Security Vulnerability Scanning</div><div class="pc-tags"><span class="ptag">DevSecOps</span><span class="ptag">Trivy</span><span class="ptag">SonarQube</span><span class="ptag">Security</span></div><div class="pc-stack">Stack: DevSecOps, Trivy, SonarQube, Security</div></div>
-    <div class="pc" onclick="tProj(this)"><div class="pc-num">05</div><div class="pc-done-badge">✓ DONE</div><div class="pc-ico" style="background:rgba(79,124,255,.12);border:1px solid rgba(79,124,255,.2)">💙</div><div class="pc-label">Project 05 · Azure</div><div class="pc-title">Azure DevOps Full CI/CD</div><div class="pc-desc">Azure Repos + Azure Boards + Azure Pipelines + Test Plan + Artifacts | Full SDLC on Azure</div><div class="pc-tags"><span class="ptag">Azure</span><span class="ptag">Azure Repos</span><span class="ptag">Azure Pipelines</span></div><div class="pc-stack">Stack: Azure Repos, Azure Boards, Pipelines, Artifacts</div></div>
-    <div class="pc" onclick="tProj(this)"><div class="pc-num">06</div><div class="pc-done-badge">✓ DONE</div><div class="pc-ico" style="background:rgba(168,85,247,.12);border:1px solid rgba(168,85,247,.2)">🤖</div><div class="pc-label">Project 06 · AI Integration</div><div class="pc-title">AI API Integration from Cloud</div><div class="pc-desc">Multi-Cloud + DevOps | Python ATS Application on AWS + GCP + AI | Gemini AI Integrations</div><div class="pc-tags"><span class="ptag">AI</span><span class="ptag">AWS</span><span class="ptag">GCP</span><span class="ptag">Python</span><span class="ptag">Gemini</span></div><div class="pc-stack">Stack: Python ATS Application, AWS+GCP, AI Integration</div></div>
-    <div class="pc" onclick="tProj(this)"><div class="pc-num">07</div><div class="pc-done-badge">✓ DONE</div><div class="pc-ico" style="background:rgba(16,255,160,.1);border:1px solid rgba(16,255,160,.2)">🧠</div><div class="pc-label">Project 07 · ML OPS</div><div class="pc-title">ML OPS in EKS</div><div class="pc-desc">Train the Model on AWS EKS Infera with Python and Make OPS | Python + AWS EC2 FAST API + EKS Development</div><div class="pc-tags"><span class="ptag">ML OPS</span><span class="ptag">AWS EKS</span><span class="ptag">Python</span><span class="ptag">FAST API</span></div><div class="pc-stack">Stack: Python, AWS EC2 FAST API + EKS Development</div></div>
-    <div class="pc" onclick="tProj(this)"><div class="pc-num">08</div><div class="pc-done-badge">✓ DONE</div><div class="pc-ico" style="background:rgba(255,230,102,.1);border:1px solid rgba(255,230,102,.2)">📊</div><div class="pc-label">Project 08 · AI OPS</div><div class="pc-title">AI OPS Automations</div><div class="pc-desc">Make AI Based OPS Decisions | Find Issue Quickly & Take Action | Python + Azure Infra + AI Integration Dashboards</div><div class="pc-tags"><span class="ptag">AI OPS</span><span class="ptag">Azure</span><span class="ptag">Python</span><span class="ptag">Dashboards</span></div><div class="pc-stack">Stack: Python + Azure Infra + AI Integration Dashboards</div></div>
+  <div class="pg-inner">
+    <div class="page-head">
+      <div class="ph-ey">Capstone · MNC-Style Portfolio</div>
+      <h1 class="ph-h1">8 <span style="background:linear-gradient(135deg,var(--orange),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Live Projects</span> 🏆</h1>
+      <p class="ph-sub">Real production-grade projects for your resume. Click each card to mark it complete.</p>
+    </div>
+    <div class="sum-bar"><div><span class="sv" id="pDone" style="color:var(--green)">0</span><span class="sl">Completed</span></div><div><span class="sv">8</span><span class="sl">Total</span></div><div><span class="sv" id="pPct" style="color:var(--orange)">0%</span><span class="sl">Done</span></div></div>
+    <div class="proj-grid">
+      <div class="pc" onclick="tProj(this)"><div class="pc-num">01</div><div class="pc-done-badge">✓ DONE</div><div class="pc-ico" style="background:rgba(79,124,255,.12);border:1px solid rgba(79,124,255,.2)">🔄</div><div class="pc-label">Project 01 · CI/CD</div><div class="pc-title">Complete CI/CD Pipeline Automation</div><div class="pc-desc">CI/CD Pipeline for Java Spring Boot | GitHub + Jenkins CI + Jenkinsfile + Docker → Deploy to Remote Machine</div><div class="pc-tags"><span class="ptag">Jenkins</span><span class="ptag">Docker</span><span class="ptag">Spring Boot</span><span class="ptag">GitHub</span></div><div class="pc-stack">Stack: Jenkins, Docker, CI/CD, Spring Boot, GitHub</div></div>
+      <div class="pc" onclick="tProj(this)"><div class="pc-num">02</div><div class="pc-done-badge">✓ DONE</div><div class="pc-ico" style="background:rgba(34,211,238,.12);border:1px solid rgba(34,211,238,.2)">☸️</div><div class="pc-label">Project 02 · Microservices</div><div class="pc-title">Microservices Deployment on GKE</div><div class="pc-desc">E-commerce using Java/Python/Go/.NET | GKE Kubernetes Cluster | Scalability & High Availability</div><div class="pc-tags"><span class="ptag">GKE</span><span class="ptag">Kubernetes</span><span class="ptag">Microservices</span><span class="ptag">E-Commerce</span></div><div class="pc-stack">Stack: Microservices, GKE, Kubernetes, E-commerce</div></div>
+      <div class="pc" onclick="tProj(this)"><div class="pc-num">03</div><div class="pc-done-badge">✓ DONE</div><div class="pc-ico" style="background:rgba(255,140,0,.12);border:1px solid rgba(255,140,0,.2)">📦</div><div class="pc-label">Project 03 · IaC + AWS</div><div class="pc-title">AWS Infrastructure with Terraform IaC</div><div class="pc-desc">Provision 40 AWS Resources | EC2, VPC, ELB, Auto Scaling, RDS, EIP, Subnets | Infrastructure as Code</div><div class="pc-tags"><span class="ptag">Terraform</span><span class="ptag">AWS</span><span class="ptag">IaC</span><span class="ptag">VPC</span><span class="ptag">RDS</span></div><div class="pc-stack">Stack: Terraform, AWS, IaC, EC2, VPC, RDS</div></div>
+      <div class="pc" onclick="tProj(this)"><div class="pc-num">04</div><div class="pc-done-badge">✓ DONE</div><div class="pc-ico" style="background:rgba(255,68,68,.12);border:1px solid rgba(255,68,68,.2)">🔐</div><div class="pc-label">Project 04 · DevSecOps</div><div class="pc-title">DevSecOps Implementation</div><div class="pc-desc">Trivy + Docker + SonarQube | Online Quiz Application | Security Vulnerability Scanning</div><div class="pc-tags"><span class="ptag">DevSecOps</span><span class="ptag">Trivy</span><span class="ptag">SonarQube</span><span class="ptag">Security</span></div><div class="pc-stack">Stack: DevSecOps, Trivy, SonarQube, Security</div></div>
+      <div class="pc" onclick="tProj(this)"><div class="pc-num">05</div><div class="pc-done-badge">✓ DONE</div><div class="pc-ico" style="background:rgba(79,124,255,.12);border:1px solid rgba(79,124,255,.2)">💙</div><div class="pc-label">Project 05 · Azure</div><div class="pc-title">Azure DevOps Full CI/CD</div><div class="pc-desc">Azure Repos + Azure Boards + Azure Pipelines + Test Plan + Artifacts | Full SDLC on Azure</div><div class="pc-tags"><span class="ptag">Azure</span><span class="ptag">Azure Repos</span><span class="ptag">Azure Pipelines</span></div><div class="pc-stack">Stack: Azure Repos, Azure Boards, Pipelines, Artifacts</div></div>
+      <div class="pc" onclick="tProj(this)"><div class="pc-num">06</div><div class="pc-done-badge">✓ DONE</div><div class="pc-ico" style="background:rgba(168,85,247,.12);border:1px solid rgba(168,85,247,.2)">🤖</div><div class="pc-label">Project 06 · AI Integration</div><div class="pc-title">AI API Integration from Cloud</div><div class="pc-desc">Multi-Cloud + DevOps | Python ATS Application on AWS + GCP + AI | Gemini AI Integrations</div><div class="pc-tags"><span class="ptag">AI</span><span class="ptag">AWS</span><span class="ptag">GCP</span><span class="ptag">Python</span><span class="ptag">Gemini</span></div><div class="pc-stack">Stack: Python ATS Application, AWS+GCP, AI Integration</div></div>
+      <div class="pc" onclick="tProj(this)"><div class="pc-num">07</div><div class="pc-done-badge">✓ DONE</div><div class="pc-ico" style="background:rgba(16,255,160,.1);border:1px solid rgba(16,255,160,.2)">🧠</div><div class="pc-label">Project 07 · ML OPS</div><div class="pc-title">ML OPS in EKS</div><div class="pc-desc">Train the Model on AWS EKS Infera with Python and Make OPS | Python + AWS EC2 FAST API + EKS Development</div><div class="pc-tags"><span class="ptag">ML OPS</span><span class="ptag">AWS EKS</span><span class="ptag">Python</span><span class="ptag">FAST API</span></div><div class="pc-stack">Stack: Python, AWS EC2 FAST API + EKS Development</div></div>
+      <div class="pc" onclick="tProj(this)"><div class="pc-num">08</div><div class="pc-done-badge">✓ DONE</div><div class="pc-ico" style="background:rgba(255,230,102,.1);border:1px solid rgba(255,230,102,.2)">📊</div><div class="pc-label">Project 08 · AI OPS</div><div class="pc-title">AI OPS Automations</div><div class="pc-desc">Make AI Based OPS Decisions | Find Issue Quickly & Take Action | Python + Azure Infra + AI Integration Dashboards</div><div class="pc-tags"><span class="ptag">AI OPS</span><span class="ptag">Azure</span><span class="ptag">Python</span><span class="ptag">Dashboards</span></div><div class="pc-stack">Stack: Python + Azure Infra + AI Integration Dashboards</div></div>
+    </div>
   </div>
-</div>
-<footer><div class="ft-logo">DevOps Mastery · Batch 43</div><div class="ft-links"><button onclick="showPage('home')">Home</button><button onclick="showPage('roadmap')">Roadmap</button><button onclick="showPage('projects')">Projects</button><button onclick="showPage('stack')">Stack</button><button onclick="showPage('progress')">Progress</button></div><div class="ft-copy">clouddevopshub.com</div></footer>
 </div>
 
 <!-- ════════════ TECH STACK ════════════ -->
-<div class="pg" id="pg-stack">
-<div class="pg-inner">
-  <div class="page-head">
-    <div class="ph-ey">Tools & Technologies</div>
-    <h1 class="ph-h1">Full <span style="background:linear-gradient(135deg,var(--cyan),var(--green));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Tech Stack</span></h1>
-    <p class="ph-sub">Click each tool to mark it as learned. Your progress is saved automatically.</p>
+<div class="section" id="sec-stack">
+  <span class="section-anchor" id="stack"></span>
+  <div style="padding:30px 40px 10px;max-width:1300px;margin:0 auto">
+    <div class="sec-div" style="padding:0"><div class="sec-div-line"></div><div class="sec-div-label">🔧 Tech Stack</div><div class="sec-div-line"></div></div>
   </div>
-  <div class="sum-bar"><div><span class="sv" id="tLearned" style="color:var(--green)">0</span><span class="sl">Learned</span></div><div><span class="sv" id="tTotal">0</span><span class="sl">Total</span></div><div><span class="sv" id="tPct" style="color:var(--cyan)">0%</span><span class="sl">Mastered</span></div></div>
-  <div class="cat-head">Cloud Platforms</div>
-  <div class="tech-grid"><div class="ti2" onclick="tTech(this)"><span class="t-ico">☁️</span><span class="t-name">AWS</span><span class="t-cat">Cloud</span><div class="t-ck">✓</div></div><div class="ti2" onclick="tTech(this)"><span class="t-ico">🌐</span><span class="t-name">GCP</span><span class="t-cat">Cloud</span><div class="t-ck">✓</div></div><div class="ti2" onclick="tTech(this)"><span class="t-ico">💙</span><span class="t-name">Azure</span><span class="t-cat">Cloud</span><div class="t-ck">✓</div></div></div>
-  <div class="cat-head">Containers & Orchestration</div>
-  <div class="tech-grid"><div class="ti2" onclick="tTech(this)"><span class="t-ico">🐳</span><span class="t-name">Docker</span><span class="t-cat">Container</span><div class="t-ck">✓</div></div><div class="ti2" onclick="tTech(this)"><span class="t-ico">☸️</span><span class="t-name">Kubernetes</span><span class="t-cat">Orchestration</span><div class="t-ck">✓</div></div><div class="ti2" onclick="tTech(this)"><span class="t-ico">🚢</span><span class="t-name">GKE</span><span class="t-cat">K8s on GCP</span><div class="t-ck">✓</div></div><div class="ti2" onclick="tTech(this)"><span class="t-ico">⛵</span><span class="t-name">Helm</span><span class="t-cat">K8s Package</span><div class="t-ck">✓</div></div><div class="ti2" onclick="tTech(this)"><span class="t-ico">🔵</span><span class="t-name">EKS</span><span class="t-cat">K8s on AWS</span><div class="t-ck">✓</div></div></div>
-  <div class="cat-head">CI/CD & Version Control</div>
-  <div class="tech-grid"><div class="ti2" onclick="tTech(this)"><span class="t-ico">🔄</span><span class="t-name">Jenkins</span><span class="t-cat">CI/CD</span><div class="t-ck">✓</div></div><div class="ti2" onclick="tTech(this)"><span class="t-ico">🐙</span><span class="t-name">GitHub</span><span class="t-cat">VCS</span><div class="t-ck">✓</div></div><div class="ti2" onclick="tTech(this)"><span class="t-ico">⚡</span><span class="t-name">GH Actions</span><span class="t-cat">CI/CD</span><div class="t-ck">✓</div></div><div class="ti2" onclick="tTech(this)"><span class="t-ico">💙</span><span class="t-name">Azure DevOps</span><span class="t-cat">CI/CD</span><div class="t-ck">✓</div></div><div class="ti2" onclick="tTech(this)"><span class="t-ico">🦊</span><span class="t-name">GitLab</span><span class="t-cat">DevOps</span><div class="t-ck">✓</div></div></div>
-  <div class="cat-head">Infrastructure as Code</div>
-  <div class="tech-grid"><div class="ti2" onclick="tTech(this)"><span class="t-ico">📦</span><span class="t-name">Terraform</span><span class="t-cat">IaC</span><div class="t-ck">✓</div></div><div class="ti2" onclick="tTech(this)"><span class="t-ico">⚙️</span><span class="t-name">Ansible</span><span class="t-cat">Config Mgmt</span><div class="t-ck">✓</div></div></div>
-  <div class="cat-head">Monitoring & Observability</div>
-  <div class="tech-grid"><div class="ti2" onclick="tTech(this)"><span class="t-ico">🔥</span><span class="t-name">Prometheus</span><span class="t-cat">Metrics</span><div class="t-ck">✓</div></div><div class="ti2" onclick="tTech(this)"><span class="t-ico">📊</span><span class="t-name">Grafana</span><span class="t-cat">Dashboards</span><div class="t-ck">✓</div></div><div class="ti2" onclick="tTech(this)"><span class="t-ico">👁️</span><span class="t-name">CloudWatch</span><span class="t-cat">AWS Monitor</span><div class="t-ck">✓</div></div><div class="ti2" onclick="tTech(this)"><span class="t-ico">🔍</span><span class="t-name">Splunk</span><span class="t-cat">Log Mgmt</span><div class="t-ck">✓</div></div></div>
-  <div class="cat-head">Languages & Scripting</div>
-  <div class="tech-grid"><div class="ti2" onclick="tTech(this)"><span class="t-ico">🐍</span><span class="t-name">Python</span><span class="t-cat">Scripting</span><div class="t-ck">✓</div></div><div class="ti2" onclick="tTech(this)"><span class="t-ico">💻</span><span class="t-name">Bash</span><span class="t-cat">Shell</span><div class="t-ck">✓</div></div><div class="ti2" onclick="tTech(this)"><span class="t-ico">☕</span><span class="t-name">Java/Maven</span><span class="t-cat">Build</span><div class="t-ck">✓</div></div><div class="ti2" onclick="tTech(this)"><span class="t-ico">🐹</span><span class="t-name">Groovy</span><span class="t-cat">Jenkinsfile</span><div class="t-ck">✓</div></div><div class="ti2" onclick="tTech(this)"><span class="t-ico">🗃️</span><span class="t-name">boto3</span><span class="t-cat">AWS SDK</span><div class="t-ck">✓</div></div></div>
-  <div class="cat-head">Security & AI</div>
-  <div class="tech-grid"><div class="ti2" onclick="tTech(this)"><span class="t-ico">🔐</span><span class="t-name">DevSecOps</span><span class="t-cat">Security</span><div class="t-ck">✓</div></div><div class="ti2" onclick="tTech(this)"><span class="t-ico">🗄️</span><span class="t-name">SonarQube</span><span class="t-cat">Code Quality</span><div class="t-ck">✓</div></div><div class="ti2" onclick="tTech(this)"><span class="t-ico">🛡️</span><span class="t-name">Trivy</span><span class="t-cat">Vulnerability</span><div class="t-ck">✓</div></div><div class="ti2" onclick="tTech(this)"><span class="t-ico">🤖</span><span class="t-name">AI/Copilot</span><span class="t-cat">AI Tools</span><div class="t-ck">✓</div></div><div class="ti2" onclick="tTech(this)"><span class="t-ico">✨</span><span class="t-name">Gemini</span><span class="t-cat">Google AI</span><div class="t-ck">✓</div></div></div>
-  <div class="cat-head">OS & Infrastructure</div>
-  <div class="tech-grid"><div class="ti2" onclick="tTech(this)"><span class="t-ico">🐧</span><span class="t-name">Linux</span><span class="t-cat">OS</span><div class="t-ck">✓</div></div><div class="ti2" onclick="tTech(this)"><span class="t-ico">🖥️</span><span class="t-name">VirtualBox</span><span class="t-cat">Hypervisor</span><div class="t-ck">✓</div></div><div class="ti2" onclick="tTech(this)"><span class="t-ico">🖧</span><span class="t-name">Nginx</span><span class="t-cat">Web Server</span><div class="t-ck">✓</div></div><div class="ti2" onclick="tTech(this)"><span class="t-ico">⚡</span><span class="t-name">FAST API</span><span class="t-cat">Python API</span><div class="t-ck">✓</div></div></div>
-</div>
-<footer><div class="ft-logo">DevOps Mastery · Batch 43</div><div class="ft-links"><button onclick="showPage('home')">Home</button><button onclick="showPage('roadmap')">Roadmap</button><button onclick="showPage('projects')">Projects</button><button onclick="showPage('stack')">Stack</button><button onclick="showPage('progress')">Progress</button></div><div class="ft-copy">clouddevopshub.com</div></footer>
+  <div class="pg-inner">
+    <div class="page-head">
+      <div class="ph-ey">Tools & Technologies</div>
+      <h1 class="ph-h1">Full <span style="background:linear-gradient(135deg,var(--cyan),var(--green));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Tech Stack</span></h1>
+      <p class="ph-sub">Click each tool to mark it as learned. Your progress is saved automatically.</p>
+    </div>
+    <div class="sum-bar"><div><span class="sv" id="tLearned" style="color:var(--green)">0</span><span class="sl">Learned</span></div><div><span class="sv" id="tTotal">0</span><span class="sl">Total</span></div><div><span class="sv" id="tPct" style="color:var(--cyan)">0%</span><span class="sl">Mastered</span></div></div>
+    <div class="cat-head">Cloud Platforms</div>
+    <div class="tech-grid"><div class="ti2" onclick="tTech(this)"><span class="t-ico">☁️</span><span class="t-name">AWS</span><span class="t-cat">Cloud</span><div class="t-ck">✓</div></div><div class="ti2" onclick="tTech(this)"><span class="t-ico">🌐</span><span class="t-name">GCP</span><span class="t-cat">Cloud</span><div class="t-ck">✓</div></div><div class="ti2" onclick="tTech(this)"><span class="t-ico">💙</span><span class="t-name">Azure</span><span class="t-cat">Cloud</span><div class="t-ck">✓</div></div></div>
+    <div class="cat-head">Containers & Orchestration</div>
+    <div class="tech-grid"><div class="ti2" onclick="tTech(this)"><span class="t-ico">🐳</span><span class="t-name">Docker</span><span class="t-cat">Container</span><div class="t-ck">✓</div></div><div class="ti2" onclick="tTech(this)"><span class="t-ico">☸️</span><span class="t-name">Kubernetes</span><span class="t-cat">Orchestration</span><div class="t-ck">✓</div></div><div class="ti2" onclick="tTech(this)"><span class="t-ico">🚢</span><span class="t-name">GKE</span><span class="t-cat">K8s on GCP</span><div class="t-ck">✓</div></div><div class="ti2" onclick="tTech(this)"><span class="t-ico">⛵</span><span class="t-name">Helm</span><span class="t-cat">K8s Package</span><div class="t-ck">✓</div></div><div class="ti2" onclick="tTech(this)"><span class="t-ico">🔵</span><span class="t-name">EKS</span><span class="t-cat">K8s on AWS</span><div class="t-ck">✓</div></div></div>
+    <div class="cat-head">CI/CD & Version Control</div>
+    <div class="tech-grid"><div class="ti2" onclick="tTech(this)"><span class="t-ico">🔄</span><span class="t-name">Jenkins</span><span class="t-cat">CI/CD</span><div class="t-ck">✓</div></div><div class="ti2" onclick="tTech(this)"><span class="t-ico">🐙</span><span class="t-name">GitHub</span><span class="t-cat">VCS</span><div class="t-ck">✓</div></div><div class="ti2" onclick="tTech(this)"><span class="t-ico">⚡</span><span class="t-name">GH Actions</span><span class="t-cat">CI/CD</span><div class="t-ck">✓</div></div><div class="ti2" onclick="tTech(this)"><span class="t-ico">💙</span><span class="t-name">Azure DevOps</span><span class="t-cat">CI/CD</span><div class="t-ck">✓</div></div><div class="ti2" onclick="tTech(this)"><span class="t-ico">🦊</span><span class="t-name">GitLab</span><span class="t-cat">DevOps</span><div class="t-ck">✓</div></div></div>
+    <div class="cat-head">Infrastructure as Code</div>
+    <div class="tech-grid"><div class="ti2" onclick="tTech(this)"><span class="t-ico">📦</span><span class="t-name">Terraform</span><span class="t-cat">IaC</span><div class="t-ck">✓</div></div><div class="ti2" onclick="tTech(this)"><span class="t-ico">⚙️</span><span class="t-name">Ansible</span><span class="t-cat">Config Mgmt</span><div class="t-ck">✓</div></div></div>
+    <div class="cat-head">Monitoring & Observability</div>
+    <div class="tech-grid"><div class="ti2" onclick="tTech(this)"><span class="t-ico">🔥</span><span class="t-name">Prometheus</span><span class="t-cat">Metrics</span><div class="t-ck">✓</div></div><div class="ti2" onclick="tTech(this)"><span class="t-ico">📊</span><span class="t-name">Grafana</span><span class="t-cat">Dashboards</span><div class="t-ck">✓</div></div><div class="ti2" onclick="tTech(this)"><span class="t-ico">👁️</span><span class="t-name">CloudWatch</span><span class="t-cat">AWS Monitor</span><div class="t-ck">✓</div></div><div class="ti2" onclick="tTech(this)"><span class="t-ico">🔍</span><span class="t-name">Splunk</span><span class="t-cat">Log Mgmt</span><div class="t-ck">✓</div></div></div>
+    <div class="cat-head">Languages & Scripting</div>
+    <div class="tech-grid"><div class="ti2" onclick="tTech(this)"><span class="t-ico">🐍</span><span class="t-name">Python</span><span class="t-cat">Scripting</span><div class="t-ck">✓</div></div><div class="ti2" onclick="tTech(this)"><span class="t-ico">💻</span><span class="t-name">Bash</span><span class="t-cat">Shell</span><div class="t-ck">✓</div></div><div class="ti2" onclick="tTech(this)"><span class="t-ico">☕</span><span class="t-name">Java/Maven</span><span class="t-cat">Build</span><div class="t-ck">✓</div></div><div class="ti2" onclick="tTech(this)"><span class="t-ico">🐹</span><span class="t-name">Groovy</span><span class="t-cat">Jenkinsfile</span><div class="t-ck">✓</div></div><div class="ti2" onclick="tTech(this)"><span class="t-ico">🗃️</span><span class="t-name">boto3</span><span class="t-cat">AWS SDK</span><div class="t-ck">✓</div></div></div>
+    <div class="cat-head">Security & AI</div>
+    <div class="tech-grid"><div class="ti2" onclick="tTech(this)"><span class="t-ico">🔐</span><span class="t-name">DevSecOps</span><span class="t-cat">Security</span><div class="t-ck">✓</div></div><div class="ti2" onclick="tTech(this)"><span class="t-ico">🗄️</span><span class="t-name">SonarQube</span><span class="t-cat">Code Quality</span><div class="t-ck">✓</div></div><div class="ti2" onclick="tTech(this)"><span class="t-ico">🛡️</span><span class="t-name">Trivy</span><span class="t-cat">Vulnerability</span><div class="t-ck">✓</div></div><div class="ti2" onclick="tTech(this)"><span class="t-ico">🤖</span><span class="t-name">AI/Copilot</span><span class="t-cat">AI Tools</span><div class="t-ck">✓</div></div><div class="ti2" onclick="tTech(this)"><span class="t-ico">✨</span><span class="t-name">Gemini</span><span class="t-cat">Google AI</span><div class="t-ck">✓</div></div></div>
+    <div class="cat-head">OS & Infrastructure</div>
+    <div class="tech-grid"><div class="ti2" onclick="tTech(this)"><span class="t-ico">🐧</span><span class="t-name">Linux</span><span class="t-cat">OS</span><div class="t-ck">✓</div></div><div class="ti2" onclick="tTech(this)"><span class="t-ico">🖥️</span><span class="t-name">VirtualBox</span><span class="t-cat">Hypervisor</span><div class="t-ck">✓</div></div><div class="ti2" onclick="tTech(this)"><span class="t-ico">🖧</span><span class="t-name">Nginx</span><span class="t-cat">Web Server</span><div class="t-ck">✓</div></div><div class="ti2" onclick="tTech(this)"><span class="t-ico">⚡</span><span class="t-name">FAST API</span><span class="t-cat">Python API</span><div class="t-ck">✓</div></div></div>
+  </div>
 </div>
 
 <!-- ════════════ PROGRESS ════════════ -->
-<div class="pg" id="pg-progress">
-<div class="pg-inner">
-  <div class="page-head">
-    <div class="ph-ey">Dashboard · Real-Time</div>
-    <h1 class="ph-h1">My <span style="background:linear-gradient(135deg,var(--blue),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Progress</span></h1>
-    <p class="ph-sub">Every click across all sections is tracked here in real-time.</p>
+<div class="section" id="sec-progress" style="background:linear-gradient(180deg,rgba(7,11,26,0.4) 0%,transparent 100%)">
+  <span class="section-anchor" id="progress"></span>
+  <div style="padding:30px 40px 10px;max-width:1300px;margin:0 auto">
+    <div class="sec-div" style="padding:0"><div class="sec-div-line"></div><div class="sec-div-label">📊 Progress</div><div class="sec-div-line"></div></div>
   </div>
-  <div class="ov-grid">
-    <div class="ov-card"><div class="ov-val" id="ov-pct" style="color:var(--blue)">0%</div><div class="ov-lbl">Overall Progress</div><div class="ov-bar"><div class="ov-bf" id="ov-pct-b" style="background:var(--blue)"></div></div></div>
-    <div class="ov-card"><div class="ov-val" id="ov-topics" style="color:var(--green)">0</div><div class="ov-lbl">Topics Done</div><div class="ov-bar"><div class="ov-bf" id="ov-topics-b" style="background:var(--green)"></div></div></div>
-    <div class="ov-card"><div class="ov-val" id="ov-mods" style="color:var(--purple)">0/8</div><div class="ov-lbl">Modules Done</div><div class="ov-bar"><div class="ov-bf" id="ov-mods-b" style="background:var(--purple)"></div></div></div>
-    <div class="ov-card"><div class="ov-val" id="ov-days" style="color:var(--orange)">58</div><div class="ov-lbl">Days Remaining</div></div>
-  </div>
-  <div class="mot-box"><div class="mot-q" id="motQ">"Every expert was once a beginner. Your DevOps journey starts with a single commit."</div><div class="mot-a">— DevOps Wisdom</div></div>
-  <div style="display:flex;gap:12px;margin-bottom:32px;flex-wrap:wrap">
-    <button class="cta-btn cta-primary" onclick="showPage('roadmap')">Go to Roadmap →</button>
-    <button class="cta-btn cta-ghost" onclick="resetAll()">Reset Progress</button>
-  </div>
-  <div style="font-family:var(--fm);font-size:9px;letter-spacing:3px;color:var(--blue);text-transform:uppercase;display:flex;align-items:center;gap:10px;margin-bottom:14px"><span style="width:14px;height:1px;background:var(--blue);display:block"></span>Module Breakdown</div>
-  <div style="margin-bottom:36px">
-    <div class="mp-row"><span class="mp-ico">🌐</span><span class="mp-n">Cloud & DevOps + AI Foundation</span><div class="mp-bw"><div class="mp-bar"><div class="mp-bf" id="mpf-m1" style="background:#4f7cff"></div></div></div><span class="mp-pct" id="mpp-m1" style="color:#4f7cff">0%</span><span class="mp-days">Day 01–04</span></div>
-    <div class="mp-row"><span class="mp-ico">🐧</span><span class="mp-n">Linux Admin for DevOps + GCP</span><div class="mp-bw"><div class="mp-bar"><div class="mp-bf" id="mpf-m2" style="background:#10b981"></div></div></div><span class="mp-pct" id="mpp-m2" style="color:#10b981">0%</span><span class="mp-days">Day 05–09</span></div>
-    <div class="mp-row"><span class="mp-ico">☁️</span><span class="mp-n">AWS Top 10 Services</span><div class="mp-bw"><div class="mp-bar"><div class="mp-bf" id="mpf-m3" style="background:#ff8c00"></div></div></div><span class="mp-pct" id="mpp-m3" style="color:#ff8c00">0%</span><span class="mp-days">Day 10–21</span></div>
-    <div class="mp-row"><span class="mp-ico">🔄</span><span class="mp-n">Core CI/CD — Git, GitHub & Jenkins</span><div class="mp-bw"><div class="mp-bar"><div class="mp-bf" id="mpf-m4" style="background:#ff4fa0"></div></div></div><span class="mp-pct" id="mpp-m4" style="color:#ff4fa0">0%</span><span class="mp-days">Day 22–29</span></div>
-    <div class="mp-row"><span class="mp-ico">🐳</span><span class="mp-n">Docker & Kubernetes + GKE</span><div class="mp-bw"><div class="mp-bar"><div class="mp-bf" id="mpf-m5" style="background:#22d3ee"></div></div></div><span class="mp-pct" id="mpp-m5" style="color:#22d3ee">0%</span><span class="mp-days">Day 30–37</span></div>
-    <div class="mp-row"><span class="mp-ico">📦</span><span class="mp-n">Ansible & Terraform — IaC</span><div class="mp-bw"><div class="mp-bar"><div class="mp-bf" id="mpf-m6" style="background:#a855f7"></div></div></div><span class="mp-pct" id="mpp-m6" style="color:#a855f7">0%</span><span class="mp-days">Day 38–46</span></div>
-    <div class="mp-row"><span class="mp-ico">💙</span><span class="mp-n">Azure DevOps + Realtime AI</span><div class="mp-bw"><div class="mp-bar"><div class="mp-bf" id="mpf-m7" style="background:#ffe066"></div></div></div><span class="mp-pct" id="mpp-m7" style="color:#ffe066">0%</span><span class="mp-days">Day 47–49</span></div>
-    <div class="mp-row"><span class="mp-ico">🚀</span><span class="mp-n">8 RealTime LIVE Projects</span><div class="mp-bw"><div class="mp-bar"><div class="mp-bf" id="mpf-m8" style="background:#10ffa0"></div></div></div><span class="mp-pct" id="mpp-m8" style="color:#10ffa0">0%</span><span class="mp-days">Day 50–58</span></div>
-  </div>
-  <div class="divr"><div class="divr-line"></div><div class="divr-txt">Journey Milestones</div><div class="divr-line"></div></div>
-  <div class="jt">
-    <div class="jt-item"><div class="jt-d" id="jt1"></div><div class="jt-c"><div class="jt-t">Foundation Complete</div><div class="jt-s">Cloud + DevOps + AI Fundamentals</div></div></div>
-    <div class="jt-item"><div class="jt-d" id="jt2"></div><div class="jt-c"><div class="jt-t">Linux + GCP Ready</div><div class="jt-s">System Admin · SSH · 50+ Linux Commands</div></div></div>
-    <div class="jt-item"><div class="jt-d" id="jt3"></div><div class="jt-c"><div class="jt-t">AWS Certified Knowledge</div><div class="jt-s">12 AWS Services · 10+ Practicals · VPC</div></div></div>
-    <div class="jt-item"><div class="jt-d" id="jt4"></div><div class="jt-c"><div class="jt-t">CI/CD Engineer</div><div class="jt-s">Git + GitHub + Jenkins · Pipelines · Master-Slave</div></div></div>
-    <div class="jt-item"><div class="jt-d" id="jt5"></div><div class="jt-c"><div class="jt-t">Container & Kubernetes Specialist</div><div class="jt-s">Docker + K8s + GKE + Prometheus + Grafana</div></div></div>
-    <div class="jt-item"><div class="jt-d" id="jt6"></div><div class="jt-c"><div class="jt-t">IaC + AI DevOps Expert</div><div class="jt-s">Terraform + Ansible + Python + Bash + Azure AI</div></div></div>
-    <div class="jt-item"><div class="jt-d" id="jt7"></div><div class="jt-c"><div class="jt-t">🏆 DevOps Mastery Complete — Job Ready!</div><div class="jt-s">8 Live Projects · Portfolio Ready · clouddevopshub.com</div></div></div>
+  <div class="pg-inner">
+    <div class="page-head">
+      <div class="ph-ey">Dashboard · Real-Time</div>
+      <h1 class="ph-h1">My <span style="background:linear-gradient(135deg,var(--blue),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Progress</span></h1>
+      <p class="ph-sub">Every click across all sections is tracked here in real-time.</p>
+    </div>
+    <div class="ov-grid">
+      <div class="ov-card"><div class="ov-val" id="ov-pct" style="color:var(--blue)">0%</div><div class="ov-lbl">Overall Progress</div><div class="ov-bar"><div class="ov-bf" id="ov-pct-b" style="background:var(--blue)"></div></div></div>
+      <div class="ov-card"><div class="ov-val" id="ov-topics" style="color:var(--green)">0</div><div class="ov-lbl">Topics Done</div><div class="ov-bar"><div class="ov-bf" id="ov-topics-b" style="background:var(--green)"></div></div></div>
+      <div class="ov-card"><div class="ov-val" id="ov-mods" style="color:var(--purple)">0/8</div><div class="ov-lbl">Modules Done</div><div class="ov-bar"><div class="ov-bf" id="ov-mods-b" style="background:var(--purple)"></div></div></div>
+      <div class="ov-card"><div class="ov-val" id="ov-days" style="color:var(--orange)">58</div><div class="ov-lbl">Days Remaining</div></div>
+    </div>
+    <div class="mot-box"><div class="mot-q" id="motQ">"Every expert was once a beginner. Your DevOps journey starts with a single commit."</div><div class="mot-a">— DevOps Wisdom</div></div>
+    <div style="display:flex;gap:12px;margin-bottom:32px;flex-wrap:wrap">
+      <button class="cta-btn cta-primary" onclick="scrollToSection('roadmap')">Go to Roadmap →</button>
+      <button class="cta-btn cta-ghost" onclick="resetAll()">Reset Progress</button>
+    </div>
+    <div style="font-family:var(--fm);font-size:9px;letter-spacing:3px;color:var(--blue);text-transform:uppercase;display:flex;align-items:center;gap:10px;margin-bottom:14px"><span style="width:14px;height:1px;background:var(--blue);display:block"></span>Module Breakdown</div>
+    <div style="margin-bottom:36px">
+      <div class="mp-row"><span class="mp-ico">🌐</span><span class="mp-n">Cloud & DevOps + AI Foundation</span><div class="mp-bw"><div class="mp-bar"><div class="mp-bf" id="mpf-m1" style="background:#4f7cff"></div></div></div><span class="mp-pct" id="mpp-m1" style="color:#4f7cff">0%</span><span class="mp-days">Day 01–04</span></div>
+      <div class="mp-row"><span class="mp-ico">🐧</span><span class="mp-n">Linux Admin for DevOps + GCP</span><div class="mp-bw"><div class="mp-bar"><div class="mp-bf" id="mpf-m2" style="background:#10b981"></div></div></div><span class="mp-pct" id="mpp-m2" style="color:#10b981">0%</span><span class="mp-days">Day 05–09</span></div>
+      <div class="mp-row"><span class="mp-ico">☁️</span><span class="mp-n">AWS Top 10 Services</span><div class="mp-bw"><div class="mp-bar"><div class="mp-bf" id="mpf-m3" style="background:#ff8c00"></div></div></div><span class="mp-pct" id="mpp-m3" style="color:#ff8c00">0%</span><span class="mp-days">Day 10–21</span></div>
+      <div class="mp-row"><span class="mp-ico">🔄</span><span class="mp-n">Core CI/CD — Git, GitHub & Jenkins</span><div class="mp-bw"><div class="mp-bar"><div class="mp-bf" id="mpf-m4" style="background:#ff4fa0"></div></div></div><span class="mp-pct" id="mpp-m4" style="color:#ff4fa0">0%</span><span class="mp-days">Day 22–29</span></div>
+      <div class="mp-row"><span class="mp-ico">🐳</span><span class="mp-n">Docker & Kubernetes + GKE</span><div class="mp-bw"><div class="mp-bar"><div class="mp-bf" id="mpf-m5" style="background:#22d3ee"></div></div></div><span class="mp-pct" id="mpp-m5" style="color:#22d3ee">0%</span><span class="mp-days">Day 30–37</span></div>
+      <div class="mp-row"><span class="mp-ico">📦</span><span class="mp-n">Ansible & Terraform — IaC</span><div class="mp-bw"><div class="mp-bar"><div class="mp-bf" id="mpf-m6" style="background:#a855f7"></div></div></div><span class="mp-pct" id="mpp-m6" style="color:#a855f7">0%</span><span class="mp-days">Day 38–46</span></div>
+      <div class="mp-row"><span class="mp-ico">💙</span><span class="mp-n">Azure DevOps + Realtime AI</span><div class="mp-bw"><div class="mp-bar"><div class="mp-bf" id="mpf-m7" style="background:#ffe066"></div></div></div><span class="mp-pct" id="mpp-m7" style="color:#ffe066">0%</span><span class="mp-days">Day 47–49</span></div>
+      <div class="mp-row"><span class="mp-ico">🚀</span><span class="mp-n">8 RealTime LIVE Projects</span><div class="mp-bw"><div class="mp-bar"><div class="mp-bf" id="mpf-m8" style="background:#10ffa0"></div></div></div><span class="mp-pct" id="mpp-m8" style="color:#10ffa0">0%</span><span class="mp-days">Day 50–58</span></div>
+    </div>
+    <div class="divr"><div class="divr-line"></div><div class="divr-txt">Journey Milestones</div><div class="divr-line"></div></div>
+    <div class="jt">
+      <div class="jt-item"><div class="jt-d" id="jt1"></div><div class="jt-c"><div class="jt-t">Foundation Complete</div><div class="jt-s">Cloud + DevOps + AI Fundamentals</div></div></div>
+      <div class="jt-item"><div class="jt-d" id="jt2"></div><div class="jt-c"><div class="jt-t">Linux + GCP Ready</div><div class="jt-s">System Admin · SSH · 50+ Linux Commands</div></div></div>
+      <div class="jt-item"><div class="jt-d" id="jt3"></div><div class="jt-c"><div class="jt-t">AWS Certified Knowledge</div><div class="jt-s">12 AWS Services · 10+ Practicals · VPC</div></div></div>
+      <div class="jt-item"><div class="jt-d" id="jt4"></div><div class="jt-c"><div class="jt-t">CI/CD Engineer</div><div class="jt-s">Git + GitHub + Jenkins · Pipelines · Master-Slave</div></div></div>
+      <div class="jt-item"><div class="jt-d" id="jt5"></div><div class="jt-c"><div class="jt-t">Container & Kubernetes Specialist</div><div class="jt-s">Docker + K8s + GKE + Prometheus + Grafana</div></div></div>
+      <div class="jt-item"><div class="jt-d" id="jt6"></div><div class="jt-c"><div class="jt-t">IaC + AI DevOps Expert</div><div class="jt-s">Terraform + Ansible + Python + Bash + Azure AI</div></div></div>
+      <div class="jt-item"><div class="jt-d" id="jt7"></div><div class="jt-c"><div class="jt-t">🏆 DevOps Mastery Complete — Job Ready!</div><div class="jt-s">8 Live Projects · Portfolio Ready · clouddevopshub.com</div></div></div>
+    </div>
   </div>
 </div>
-<footer><div class="ft-logo">DevOps Mastery · Batch 43</div><div class="ft-links"><button onclick="showPage('home')">Home</button><button onclick="showPage('roadmap')">Roadmap</button><button onclick="showPage('projects')">Projects</button><button onclick="showPage('stack')">Stack</button><button onclick="showPage('progress')">Progress</button></div><div class="ft-copy">clouddevopshub.com · DevOps With Vikas</div></footer>
-</div>
+
+<!-- ════════════ FOOTER ════════════ -->
+<footer>
+  <div class="ft-inner">
+    <div class="ft-brand">
+      <div class="ft-brand-logo">☁️</div>
+      <div>
+        <div class="ft-brand-name">CloudDevOpsHub</div>
+        <div class="ft-brand-url">clouddevopshub.com · DevOps With Vikas</div>
+      </div>
+    </div>
+    <div class="ft-links">
+      <button onclick="scrollToSection('home')">Home</button>
+      <button onclick="scrollToSection('roadmap')">Roadmap</button>
+      <button onclick="scrollToSection('projects')">Projects</button>
+      <button onclick="scrollToSection('stack')">Stack</button>
+      <button onclick="scrollToSection('progress')">Progress</button>
+    </div>
+    <div class="ft-copy">Multi-Cloud with AWS + DevOps with AI · Batch 43 · © 2026 CloudDevOpsHub</div>
+  </div>
+</footer>
 
 <div class="toast" id="toast"><span id="tIco">✅</span><span id="tMsg">Done!</span></div>
 
@@ -709,22 +745,45 @@ footer{position:relative;z-index:1;text-align:center;padding:40px;border-top:1px
   rs();init();draw();addEventListener('resize',()=>{rs();init()});
 })();
 
-// ── ROUTING ──
-function showPage(id){
-  document.querySelectorAll('.pg').forEach(p=>p.classList.remove('on'));
+// ── SCROLL-BASED NAV HIGHLIGHTING ──
+const SECTIONS=['home','roadmap','projects','stack','progress'];
+function updateActiveTab(){
+  let active='home';
+  SECTIONS.forEach(id=>{
+    const el=document.getElementById(id);
+    if(el){
+      const rect=el.getBoundingClientRect();
+      if(rect.top<=80)active=id;
+    }
+  });
   document.querySelectorAll('.ntab').forEach(b=>b.classList.remove('on'));
-  document.getElementById('pg-'+id).classList.add('on');
-  const nb=document.getElementById('nb-'+id);if(nb)nb.classList.add('on');
-  window.scrollTo({top:0,behavior:'smooth'});
-  if(id==='progress')renderProgress();
-  if(id==='stack')updateTechSum();
-  if(id==='projects')updateProjStats();
+  const nb=document.getElementById('nb-'+active);if(nb)nb.classList.add('on');
+  if(active==='progress')renderProgress();
+  if(active==='stack')updateTechSum();
+  if(active==='projects')updateProjStats();
+}
+window.addEventListener('scroll',updateActiveTab,{passive:true});
+
+// ── SCROLL TO SECTION ──
+function scrollToSection(id){
+  const el=document.getElementById(id);
+  if(el){
+    const top=el.getBoundingClientRect().top+window.scrollY-62;
+    window.scrollTo({top,behavior:'smooth'});
+  }
 }
 
 // ── MODULE TOGGLE ──
 const MODS=['m1','m2','m3','m4','m5','m6','m7','m8'];
 function toggleMod(id){document.getElementById(id).classList.toggle('open')}
-function openMod(id){const el=document.getElementById(id);if(el&&!el.classList.contains('open'))el.classList.add('open');showPage('roadmap')}
+function openMod(id){
+  const el=document.getElementById(id);
+  if(el&&!el.classList.contains('open'))el.classList.add('open');
+  scrollToSection('roadmap');
+  setTimeout(()=>{
+    el.scrollIntoView({behavior:'smooth',block:'start'});
+  },400);
+}
 
 // ── DAY CARDS ──
 function tDay(card,mid){
@@ -747,7 +806,6 @@ function tProj(c){
 // ── PROJECT BANNER (HOME) ──
 function tProjBanner(item,idx){
   item.classList.toggle('done');
-  // sync with projects page
   const projCards=document.querySelectorAll('.pc');
   if(projCards[idx]){
     if(item.classList.contains('done'))projCards[idx].classList.add('done');
@@ -762,7 +820,6 @@ function updateProjStats(){
   const done=document.querySelectorAll('.pc.done').length;
   const el1=document.getElementById('pDone'),el2=document.getElementById('pPct');
   if(el1)el1.textContent=done;if(el2)el2.textContent=Math.round(done/8*100)+'%';
-  // sync banner
   const projCards=document.querySelectorAll('.pc');
   const bannerItems=document.querySelectorAll('.pb-item');
   projCards.forEach((c,i)=>{if(bannerItems[i]){if(c.classList.contains('done'))bannerItems[i].classList.add('done');else bannerItems[i].classList.remove('done')}});
@@ -881,6 +938,9 @@ function restore(){
   }catch(e){}
 }
 restore();
+renderProgress();
+updateTechSum();
+updateProjStats();
 </script>
 </body>
 </html>
