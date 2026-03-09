@@ -319,6 +319,26 @@ footer{position:relative;z-index:1;padding:50px 40px 40px;border-top:1px solid v
 @keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
 .a1{animation:fadeUp .7s .1s both}.a2{animation:fadeUp .7s .25s both}.a3{animation:fadeUp .7s .4s both}.a4{animation:fadeUp .7s .55s both}
 
+/* ── VALUE COMPARISON BANNER ── */
+.value-banner{display:flex;align-items:center;gap:0;background:linear-gradient(135deg,rgba(79,124,255,0.07) 0%,rgba(168,85,247,0.06) 50%,rgba(16,255,160,0.05) 100%);border:1px solid rgba(79,124,255,0.22);border-radius:16px;padding:16px 20px;margin-bottom:28px;flex-wrap:wrap;gap:8px;position:relative;overflow:hidden}
+.value-banner::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(79,124,255,0.04),transparent);pointer-events:none}
+.vb-left,.vb-right{flex:1;min-width:140px}
+.vb-mode{display:flex;align-items:center;gap:12px}
+.vb-mode-icon{font-size:26px;filter:drop-shadow(0 0 8px rgba(79,124,255,.5))}
+.vb-mode-label{font-family:var(--fm);font-size:8px;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-bottom:3px}
+.vb-mode-val{font-size:28px;font-weight:900;color:var(--white);line-height:1;letter-spacing:-1px}
+.vb-mode-val span{font-size:13px;font-weight:600;color:var(--light);letter-spacing:0}
+.vb-left .vb-mode-val{color:var(--blue);text-shadow:0 0 20px rgba(79,124,255,.4)}
+.vb-right .vb-mode-val{color:var(--muted)}
+.vb-eq{display:flex;flex-direction:column;align-items:center;gap:6px;padding:0 16px;flex-shrink:0}
+.vb-eq-line{width:1px;height:24px;background:linear-gradient(180deg,transparent,var(--border2),transparent)}
+.vb-eq-badge{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--purple));display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:900;color:#fff;box-shadow:0 0 16px rgba(79,124,255,.4);flex-shrink:0}
+.vb-pills{display:flex;gap:6px;flex-wrap:wrap;width:100%;margin-top:4px}
+.vb-pill{font-family:var(--fm);font-size:9px;letter-spacing:1px;font-weight:700;padding:4px 10px;border-radius:20px;text-transform:uppercase}
+.vb-pill-green{background:rgba(16,255,160,0.1);border:1px solid rgba(16,255,160,0.3);color:var(--green)}
+.vb-pill-blue{background:rgba(79,124,255,0.1);border:1px solid rgba(79,124,255,0.3);color:var(--blue)}
+.vb-pill-purple{background:rgba(168,85,247,0.1);border:1px solid rgba(168,85,247,0.3);color:var(--purple)}
+
 /* ── RESPONSIVE ── */
 @media(max-width:1000px){.rm-wrap{grid-template-columns:1fr;padding:40px 20px 50px}.sb{display:none}.hero-grid{grid-template-columns:1fr}.hero-orb{display:none}.mod-tiles{grid-template-columns:repeat(2,1fr)}.pb-grid{grid-template-columns:repeat(2,1fr)}.ov-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:640px){nav{padding:0 16px}.ntab{display:none}.hero{padding:80px 16px 40px}.mod-tiles{grid-template-columns:1fr}.pb-grid{grid-template-columns:1fr}.ov-grid{grid-template-columns:1fr}.pg-inner{padding:40px 16px 50px}}
@@ -356,7 +376,7 @@ footer{position:relative;z-index:1;padding:50px 40px 40px;border-top:1px solid v
   <div class="hero">
     <div class="hero-grid">
       <div class="a1">
-        <div class="hero-badge"><div class="hero-badge-dot"></div>100% Live · 55 Sessions · Batch 43</div>
+        <div class="hero-badge"><div class="hero-badge-dot"></div>100% Live &amp; Interactive · 55 Sessions · Batch 43</div>
         <h1 class="hero-h1">Multi-Cloud<br><span class="g1">DevOps</span><br><span class="g2">+ AI Mastery</span></h1>
         <p class="hero-sub">58 days of live training across AWS, GCP, Azure, Docker, Kubernetes, Terraform, Ansible, Jenkins, Python, and AI. Click any topic to track your progress.</p>
         <div class="hero-stats">
@@ -366,6 +386,39 @@ footer{position:relative;z-index:1;padding:50px 40px 40px;border-top:1px solid v
           <div class="hs"><span class="hs-num" style="color:var(--orange)">8</span><span class="hs-lbl">Projects</span></div>
           <div class="hs"><span class="hs-num" style="color:var(--green)">55</span><span class="hs-lbl">Sessions</span></div>
         </div>
+
+        <!-- VALUE COMPARISON BANNER -->
+        <div class="value-banner">
+          <div class="vb-left">
+            <div class="vb-mode">
+              <div class="vb-mode-icon">⚡</div>
+              <div>
+                <div class="vb-mode-label">Mon – Fri · Regular</div>
+                <div class="vb-mode-val">2.5 <span>Months</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="vb-eq">
+            <div class="vb-eq-line"></div>
+            <div class="vb-eq-badge">=</div>
+            <div class="vb-eq-line"></div>
+          </div>
+          <div class="vb-right">
+            <div class="vb-mode">
+              <div class="vb-mode-icon">📅</div>
+              <div>
+                <div class="vb-mode-label">Weekend-only learning</div>
+                <div class="vb-mode-val">8–9 <span>Months</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="vb-pills">
+            <span class="vb-pill vb-pill-green">✓ 100% Live</span>
+            <span class="vb-pill vb-pill-blue">✓ Interactive</span>
+            <span class="vb-pill vb-pill-purple">✓ 55 Sessions</span>
+          </div>
+        </div>
+
         <div class="hero-ctas">
           <button class="cta-btn cta-primary" onclick="scrollToSection('roadmap')">Start Roadmap →</button>
           <button class="cta-btn cta-ghost" onclick="scrollToSection('progress')">My Progress</button>
