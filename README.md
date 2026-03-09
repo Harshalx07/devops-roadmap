@@ -125,7 +125,6 @@ git push origin main
 ## 📄 License
 
 This project is for personal learning and portfolio use.  
-Course content © DevOps With Vikas / clouddevopshub.com
 
 ---
 
