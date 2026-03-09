@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+
+<title>DevOps Roadmap</title>
+
+<style>
+
+body{
+background:#0f172a;
+font-family:Arial;
+color:white;
+text-align:center;
+padding:40px;
+}
+
+h1{
+margin-bottom:40px;
+}
+
+.roadmap{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:20px;
+max-width:900px;
+margin:auto;
+}
+
+.node{
+padding:20px;
+border-radius:12px;
+background:#1e293b;
+cursor:pointer;
+transition:0.3s;
+}
+
+.node:hover{
+transform:scale(1.05);
+background:#2563eb;
+}
+
+.completed{
+background:#22c55e !important;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>DevOps Multi Cloud Roadmap</h1>
+
+<div class="roadmap">
+
+<div class="node" onclick="toggle(this)">DevOps Basics</div>
+
+<div class="node" onclick="toggle(this)">Linux</div>
+
+<div class="node" onclick="toggle(this)">AWS</div>
+
+<div class="node" onclick="toggle(this)">Git</div>
+
+<div class="node" onclick="toggle(this)">Jenkins</div>
+
+<div class="node" onclick="toggle(this)">Docker</div>
+
+<div class="node" onclick="toggle(this)">Kubernetes</div>
+
+<div class="node" onclick="toggle(this)">Terraform</div>
+
+<div class="node" onclick="toggle(this)">Ansible</div>
+
+<div class="node" onclick="toggle(this)">Prometheus</div>
+
+<div class="node" onclick="toggle(this)">Grafana</div>
+
+<div class="node" onclick="toggle(this)">AI DevOps</div>
+
+</div>
+
+<script>
+
+function toggle(el){
+el.classList.toggle("completed")
+}
+
+</script>
+
+</body>
+</html>
