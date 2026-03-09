@@ -1,49 +1,12 @@
-body{
+.section{
 
-background:#020617;
-color:white;
-font-family:Arial;
-text-align:center;
-padding:40px;
+margin-bottom:60px;
 
 }
 
-h1{
+h2{
 
-margin-bottom:40px;
-
-}
-
-.roadmap{
-
-display:grid;
-grid-template-columns:repeat(4,200px);
-gap:30px;
-justify-content:center;
-
-}
-
-.node{
-
-background:#0f172a;
-padding:25px;
-border-radius:12px;
-cursor:pointer;
-transition:0.3s;
-border:1px solid #1e293b;
-
-}
-
-.node:hover{
-
-transform:scale(1.08);
-box-shadow:0 0 15px #3b82f6;
-
-}
-
-.completed{
-
-background:#16a34a;
-box-shadow:0 0 20px #22c55e;
+margin-bottom:20px;
+color:#3b82f6;
 
 }
