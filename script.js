@@ -4,7 +4,7 @@ nodes.forEach(node => {
 
 const id = node.dataset.id
 
-if(localStorage.getItem(id) === "done"){
+if(localStorage.getItem(id)){
 node.classList.add("completed")
 }
 
