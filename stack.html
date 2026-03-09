@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DevOps AI Roadmap · Tech Stack</title>
+<link rel="stylesheet" href="../css/style.css">
+<style>
+.page-hero { position:relative;z-index:1;padding:120px 48px 60px;max-width:1280px;margin:0 auto; }
+.cat-section { margin-bottom:52px; }
+.cat-title { font-family:var(--font-mono); font-size:10px; letter-spacing:3px; color:var(--text-dim); text-transform:uppercase; margin-bottom:14px; display:flex;align-items:center;gap:10px; }
+.cat-title::before { content:''; flex:1; height:1px; background:var(--border); }
+.cat-title::after  { content:''; flex:1; height:1px; background:var(--border); }
+.tech-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(110px,1fr)); gap:10px; }
+
+.tech-item {
+  position:relative; display:flex; flex-direction:column; align-items:center; gap:8px;
+  padding:20px 10px 16px; text-align:center;
+  background:linear-gradient(145deg,var(--surface) 0%,#09091f 100%);
+  border:1px solid rgba(255,255,255,0.05); border-radius:var(--radius-md);
+  cursor:pointer; transition:all 0.25s; user-select:none;
+  box-shadow:var(--shadow-card),2px 4px 0 rgba(0,0,0,0.3);
+}
+.tech-item::before { content:''; position:absolute; top:0;left:0;right:0;height:1px; background:linear-gradient(90deg,transparent,rgba(255,255,255,0.06),transparent); border-radius:var(--radius-md) var(--radius-md) 0 0; }
+.tech-item:hover { border-color:rgba(99,102,241,0.28); transform:translateY(-4px); box-shadow:0 16px 40px rgba(0,0,0,0.55),0 4px 16px rgba(99,102,241,0.15),1px 2px 0 rgba(0,0,0,0.2); }
+.tech-item:active { transform:translateY(0); transition-duration:0.08s; }
+.tech-item.is-done { background:linear-gradient(145deg,#091510 0%,#050d08 100%); border-color:rgba(16,185,129,0.28); box-shadow:var(--shadow-card),0 0 20px rgba(16,185,129,0.1),2px 4px 0 rgba(0,0,0,0.3); }
+.tech-emoji { font-size:30px; }
+.tech-name { font-family:var(--font-mono); font-size:9px; letter-spacing:0.5px; color:var(--text-dim); text-transform:uppercase; transition:color 0.2s; }
+.tech-category { font-family:var(--font-mono); font-size:8px; color:rgba(148,163,184,0.3); margin-top:1px; }
+.tech-item:hover .tech-name { color:var(--text-muted); }
+.tech-item.is-done .tech-name { color:rgba(16,185,129,0.65); }
+.tech-check { position:absolute; top:6px;right:6px; width:17px;height:17px; border-radius:50%; background:var(--ai-green); display:none;align-items:center;justify-content:center; font-size:9px;color:#fff;font-weight:700; box-shadow:0 0 10px var(--ai-green); animation:checkPop 0.3s cubic-bezier(0.34,1.56,0.64,1); }
+.tech-item.is-done .tech-check { display:flex; }
+
+.legend { display:flex;gap:20px;flex-wrap:wrap;margin-bottom:28px; }
+.legend-item { display:flex;align-items:center;gap:7px;font-family:var(--font-mono);font-size:10px;color:var(--text-muted);letter-spacing:1px; }
+.legend-dot { width:8px;height:8px;border-radius:50%; }
+
+.summary-bar { display:flex;gap:20px;padding:18px 22px; background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-md); margin-bottom:36px; }
+.sum-val { font-family:var(--font-display);font-weight:800;font-size:24px;color:#fff; display:block; }
+.sum-lbl { font-family:var(--font-mono);font-size:9px;letter-spacing:2px;color:var(--text-dim);text-transform:uppercase; }
+</style>
+</head>
+<body>
+
+<div class="neural-bg"><canvas id="nc"></canvas></div>
+
+<nav class="nav">
+  <div class="nav-brand"><div class="nav-dot"></div>DevOps AI Roadmap</div>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="roadmap.html">Roadmap</a></li>
+    <li><a href="projects.html">Projects</a></li>
+    <li><a href="stack.html" class="active">Tech Stack</a></li>
+    <li><a href="progress.html">My Progress</a></li>
+  </ul>
+  <div class="nav-right">
+    <span class="nav-prog-label">PROGRESS</span>
+    <div class="nav-prog-bar"><div class="nav-prog-fill" id="navFill"></div></div>
+    <span class="nav-pct" id="navPct">0%</span>
+  </div>
+</nav>
+
+<div class="page-hero page">
+  <div class="sec-eyebrow anim-1">Tools & Technologies</div>
+  <h1 class="sec-h2 anim-1" style="font-size:clamp(30px,5vw,50px);margin-bottom:10px;">Full <span class="grad">Tech Stack</span></h1>
+  <p style="color:var(--text-muted);font-size:14px;max-width:500px;line-height:1.7;margin-bottom:28px;" class="anim-2">Click each tool to mark it as learned. Your progress is saved automatically.</p>
+
+  <div class="summary-bar anim-2">
+    <div><span class="sum-val" id="learnedCount">0</span><span class="sum-lbl">Learned</span></div>
+    <div><span class="sum-val" id="totalCount">0</span><span class="sum-lbl">Total Tools</span></div>
+    <div><span class="sum-val" id="learnedPct" style="color:var(--ai-green)">0%</span><span class="sum-lbl">Mastered</span></div>
+  </div>
+
+  <!-- CLOUD PLATFORMS -->
+  <div class="cat-section anim-3">
+    <div class="cat-title">Cloud Platforms</div>
+    <div class="tech-grid">
+      <div class="tech-item" onclick="toggleTech(this)"><span class="tech-emoji">☁️</span><span class="tech-name">AWS</span><span class="tech-category">Cloud</span><div class="tech-check">✓</div></div>
+      <div class="tech-item" onclick="toggleTech(this)"><span class="tech-emoji">🌐</span><span class="tech-name">GCP</span><span class="tech-category">Cloud</span><div class="tech-check">✓</div></div>
+      <div class="tech-item" onclick="toggleTech(this)"><span class="tech-emoji">💙</span><span class="tech-name">Azure</span><span class="tech-category">Cloud</span><div class="tech-check">✓</div></div>
+    </div>
+  </div>
+
+  <!-- CONTAINERS & ORCHESTRATION -->
+  <div class="cat-section">
+    <div class="cat-title">Containers & Orchestration</div>
+    <div class="tech-grid">
+      <div class="tech-item" onclick="toggleTech(this)"><span class="tech-emoji">🐳</span><span class="tech-name">Docker</span><span class="tech-category">Container</span><div class="tech-check">✓</div></div>
+      <div class="tech-item" onclick="toggleTech(this)"><span class="tech-emoji">☸️</span><span class="tech-name">Kubernetes</span><span class="tech-category">Orchestration</span><div class="tech-check">✓</div></div>
+      <div class="tech-item" onclick="toggleTech(this)"><span class="tech-emoji">🚢</span><span class="tech-name">GKE</span><span class="tech-category">K8s on GCP</span><div class="tech-check">✓</div></div>
+      <div class="tech-item" onclick="toggleTech(this)"><span class="tech-emoji">⛵</span><span class="tech-name">Helm</span><span class="tech-category">K8s Package</span><div class="tech-check">✓</div></div>
+    </div>
+  </div>
+
+  <!-- CI/CD -->
+  <div class="cat-section">
+    <div class="cat-title">CI/CD & Version Control</div>
+    <div class="tech-grid">
+      <div class="tech-item" onclick="toggleTech(this)"><span class="tech-emoji">🔄</span><span class="tech-name">Jenkins</span><span class="tech-category">CI/CD</span><div class="tech-check">✓</div></div>
+      <div class="tech-item" onclick="toggleTech(this)"><span class="tech-emoji">🐙</span><span class="tech-name">GitHub</span><span class="tech-category">VCS</span><div class="tech-check">✓</div></div>
+      <div class="tech-item" onclick="toggleTech(this)"><span class="tech-emoji">⚡</span><span class="tech-name">GitHub Actions</span><span class="tech-category">CI/CD</span><div class="tech-check">✓</div></div>
+      <div class="tech-item" onclick="toggleTech(this)"><span class="tech-emoji">🦊</span><span class="tech-name">GitLab</span><span class="tech-category">DevOps</span><div class="tech-check">✓</div></div>
+      <div class="tech-item" onclick="toggleTech(this)"><span class="tech-emoji">💙</span><span class="tech-name">Azure DevOps</span><span class="tech-category">CI/CD</span><div class="tech-check">✓</div></div>
+    </div>
+  </div>
+
+  <!-- IAC -->
+  <div class="cat-section">
+    <div class="cat-title">Infrastructure as Code</div>
+    <div class="tech-grid">
+      <div class="tech-item" onclick="toggleTech(this)"><span class="tech-emoji">📦</span><span class="tech-name">Terraform</span><span class="tech-category">IaC</span><div class="tech-check">✓</div></div>
+      <div class="tech-item" onclick="toggleTech(this)"><span class="tech-emoji">⚙️</span><span class="tech-name">Ansible</span><span class="tech-category">Config Mgmt</span><div class="tech-check">✓</div></div>
+    </div>
+  </div>
+
+  <!-- MONITORING -->
+  <div class="cat-section">
+    <div class="cat-title">Monitoring & Observability</div>
+    <div class="tech-grid">
+      <div class="tech-item" onclick="toggleTech(this)"><span class="tech-emoji">🔥</span><span class="tech-name">Prometheus</span><span class="tech-category">Metrics</span><div class="tech-check">✓</div></div>
+      <div class="tech-item" onclick="toggleTech(this)"><span class="tech-emoji">📊</span><span class="tech-name">Grafana</span><span class="tech-category">Dashboards</span><div class="tech-check">✓</div></div>
+      <div class="tech-item" onclick="toggleTech(this)"><span class="tech-emoji">👁️</span><span class="tech-name">CloudWatch</span><span class="tech-category">AWS Monitor</span><div class="tech-check">✓</div></div>
+      <div class="tech-item" onclick="toggleTech(this)"><span class="tech-emoji">🔍</span><span class="tech-name">Splunk</span><span class="tech-category">Log Mgmt</span><div class="tech-check">✓</div></div>
+    </div>
+  </div>
+
+  <!-- LANGUAGES -->
+  <div class="cat-section">
+    <div class="cat-title">Languages & Scripting</div>
+    <div class="tech-grid">
+      <div class="tech-item" onclick="toggleTech(this)"><span class="tech-emoji">🐍</span><span class="tech-name">Python</span><span class="tech-category">Scripting</span><div class="tech-check">✓</div></div>
+      <div class="tech-item" onclick="toggleTech(this)"><span class="tech-emoji">💻</span><span class="tech-name">Bash</span><span class="tech-category">Shell</span><div class="tech-check">✓</div></div>
+      <div class="tech-item" onclick="toggleTech(this)"><span class="tech-emoji">☕</span><span class="tech-name">Java/Maven</span><span class="tech-category">Build</span><div class="tech-check">✓</div></div>
+      <div class="tech-item" onclick="toggleTech(this)"><span class="tech-emoji">🐹</span><span class="tech-name">Groovy</span><span class="tech-category">Jenkinsfile</span><div class="tech-check">✓</div></div>
+    </div>
+  </div>
+
+  <!-- SECURITY & AI -->
+  <div class="cat-section">
+    <div class="cat-title">Security & AI</div>
+    <div class="tech-grid">
+      <div class="tech-item" onclick="toggleTech(this)"><span class="tech-emoji">🔐</span><span class="tech-name">DevSecOps</span><span class="tech-category">Security</span><div class="tech-check">✓</div></div>
+      <div class="tech-item" onclick="toggleTech(this)"><span class="tech-emoji">🗄️</span><span class="tech-name">SonarQube</span><span class="tech-category">Code Quality</span><div class="tech-check">✓</div></div>
+      <div class="tech-item" onclick="toggleTech(this)"><span class="tech-emoji">🛡️</span><span class="tech-name">Trivy</span><span class="tech-category">Vulnerability</span><div class="tech-check">✓</div></div>
+      <div class="tech-item" onclick="toggleTech(this)"><span class="tech-emoji">🤖</span><span class="tech-name">AI/Copilot</span><span class="tech-category">AI Tools</span><div class="tech-check">✓</div></div>
+      <div class="tech-item" onclick="toggleTech(this)"><span class="tech-emoji">✨</span><span class="tech-name">Gemini</span><span class="tech-category">Google AI</span><div class="tech-check">✓</div></div>
+    </div>
+  </div>
+
+  <!-- OS & INFRA -->
+  <div class="cat-section">
+    <div class="cat-title">OS & Infrastructure</div>
+    <div class="tech-grid">
+      <div class="tech-item" onclick="toggleTech(this)"><span class="tech-emoji">🐧</span><span class="tech-name">Linux</span><span class="tech-category">OS</span><div class="tech-check">✓</div></div>
+      <div class="tech-item" onclick="toggleTech(this)"><span class="tech-emoji">🖥️</span><span class="tech-name">VirtualBox</span><span class="tech-category">Hypervisor</span><div class="tech-check">✓</div></div>
+      <div class="tech-item" onclick="toggleTech(this)"><span class="tech-emoji">🖧</span><span class="tech-name">Nginx</span><span class="tech-category">Web Server</span><div class="tech-check">✓</div></div>
+      <div class="tech-item" onclick="toggleTech(this)"><span class="tech-emoji">🗃️</span><span class="tech-name">boto3</span><span class="tech-category">AWS SDK</span><div class="tech-check">✓</div></div>
+    </div>
+  </div>
+
+</div><!-- page-hero -->
+
+<footer class="footer">
+  <div class="footer-logo">DevOps Mastery · Batch 43</div>
+  <div class="footer-links">
+    <a href="../index.html">Home</a><a href="roadmap.html">Roadmap</a><a href="projects.html">Projects</a><a href="stack.html">Stack</a><a href="progress.html">Progress</a>
+  </div>
+  <div class="footer-copy">Online Multi Cloud with AWS + DevOps with AI · clouddevopshub.com</div>
+</footer>
+
+<div class="toast" id="toast"><span id="tIcon">✅</span><span id="tMsg">Done!</span></div>
+
+<script src="../js/main.js"></script>
+<script src="../js/progress.js"></script>
+<script>
+function updateTechSummary() {
+  const items   = document.querySelectorAll('.tech-item');
+  const learned = document.querySelectorAll('.tech-item.is-done').length;
+  document.getElementById('learnedCount').textContent = learned;
+  document.getElementById('totalCount').textContent   = items.length;
+  document.getElementById('learnedPct').textContent   = items.length ? Math.round(learned/items.length*100)+'%' : '0%';
+}
+const _orig = toggleTech;
+window.toggleTech = function(item) { _orig(item); updateTechSummary(); };
+
+document.addEventListener('DOMContentLoaded', () => { restoreProgress(); updateTechSummary(); });
+</script>
+</body>
+</html>

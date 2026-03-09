@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DevOps AI Roadmap · My Progress</title>
+<link rel="stylesheet" href="../css/style.css">
+<style>
+.page-hero { position:relative;z-index:1;padding:120px 48px 80px;max-width:1280px;margin:0 auto; }
+
+.overview-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-bottom:40px; }
+.ov-card { padding:22px; background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-md); box-shadow:var(--shadow-card),3px 5px 0 rgba(0,0,0,0.3); }
+.ov-val { font-family:var(--font-display); font-weight:800; font-size:36px; line-height:1; margin-bottom:6px; }
+.ov-lbl { font-family:var(--font-mono); font-size:9px; letter-spacing:2px; color:var(--text-dim); text-transform:uppercase; }
+.ov-bar { height:3px; background:rgba(255,255,255,0.05); border-radius:3px; margin-top:14px; overflow:hidden; }
+.ov-bar-fill { height:100%; border-radius:3px; width:0%; transition:width 0.8s ease; }
+
+.module-progress { margin-bottom:48px; }
+.mod-prog-row { display:flex; align-items:center; gap:16px; padding:14px 16px; background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-sm); margin-bottom:6px; transition:border-color 0.2s; }
+.mod-prog-row:hover { border-color:var(--border-h); }
+.mod-prog-icon { font-size:20px; flex-shrink:0; }
+.mod-prog-name { font-size:13px; font-weight:600; color:var(--text); flex:1; }
+.mod-prog-bar-wrap { flex:2; }
+.mod-prog-bar { height:5px; background:rgba(255,255,255,0.05); border-radius:3px; overflow:hidden; }
+.mod-prog-fill { height:100%; border-radius:3px; width:0%; transition:width 0.8s ease; }
+.mod-prog-pct { font-family:var(--font-mono); font-size:11px; min-width:36px; text-align:right; }
+.mod-prog-days { font-family:var(--font-mono); font-size:9px; letter-spacing:1px; color:var(--text-dim); flex-shrink:0; min-width:60px; text-align:right; }
+
+.action-row { display:flex; gap:12px; flex-wrap:wrap; margin-bottom:48px; }
+
+.motivation-box { padding:28px; background:linear-gradient(135deg,rgba(99,102,241,0.08) 0%,rgba(139,92,246,0.05) 100%); border:1px solid rgba(99,102,241,0.15); border-radius:var(--radius-lg); margin-bottom:40px; }
+.quote-text { font-size:18px; font-weight:600; color:#fff; line-height:1.6; margin-bottom:10px; }
+.quote-auth { font-family:var(--font-mono); font-size:10px; letter-spacing:2px; color:var(--ai-blue); text-transform:uppercase; }
+
+.journey-timeline { display:flex; flex-direction:column; gap:0; }
+.jt-item { display:flex; gap:20px; padding:16px 0; border-bottom:1px solid var(--border); }
+.jt-dot { width:10px; height:10px; border-radius:50%; background:var(--text-dim); flex-shrink:0; margin-top:4px; position:relative; }
+.jt-dot::after { content:''; position:absolute; top:10px; left:50%; transform:translateX(-50%); width:1px; height:calc(100% + 16px); background:var(--border); }
+.jt-item:last-child .jt-dot::after { display:none; }
+.jt-dot.done { background:var(--ai-green); box-shadow:0 0 8px var(--ai-green); }
+.jt-dot.current { background:var(--ai-blue); box-shadow:0 0 8px var(--ai-blue); animation:pulse 2s ease-in-out infinite; }
+.jt-content { flex:1; }
+.jt-title { font-weight:600; font-size:13px; color:var(--text); margin-bottom:3px; }
+.jt-sub   { font-family:var(--font-mono); font-size:10px; color:var(--text-dim); letter-spacing:1px; }
+
+@media(max-width:768px) {
+  .overview-grid{grid-template-columns:repeat(2,1fr);}
+  .page-hero{padding:110px 20px 60px;}
+}
+@media(max-width:400px) { .overview-grid{grid-template-columns:1fr;} }
+</style>
+</head>
+<body>
+
+<div class="neural-bg"><canvas id="nc"></canvas></div>
+
+<nav class="nav">
+  <div class="nav-brand"><div class="nav-dot"></div>DevOps AI Roadmap</div>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="roadmap.html">Roadmap</a></li>
+    <li><a href="projects.html">Projects</a></li>
+    <li><a href="stack.html">Tech Stack</a></li>
+    <li><a href="progress.html" class="active">My Progress</a></li>
+  </ul>
+  <div class="nav-right">
+    <span class="nav-prog-label">PROGRESS</span>
+    <div class="nav-prog-bar"><div class="nav-prog-fill" id="navFill"></div></div>
+    <span class="nav-pct" id="navPct">0%</span>
+  </div>
+</nav>
+
+<div class="page-hero page">
+  <div class="sec-eyebrow anim-1">Dashboard · Real-Time</div>
+  <h1 class="sec-h2 anim-1" style="font-size:clamp(30px,5vw,50px);margin-bottom:10px;">My <span class="grad">Progress</span> Dashboard</h1>
+  <p style="color:var(--text-muted);font-size:14px;max-width:500px;line-height:1.7;margin-bottom:36px;" class="anim-2">Track your DevOps journey in real-time. Every topic you complete across all pages is reflected here.</p>
+
+  <!-- OVERVIEW CARDS -->
+  <div class="overview-grid anim-3">
+    <div class="ov-card">
+      <div class="ov-val" id="ov-overall" style="color:var(--ai-blue)">0%</div>
+      <div class="ov-lbl">Overall Progress</div>
+      <div class="ov-bar"><div class="ov-bar-fill" id="ov-overall-bar" style="background:var(--ai-blue);"></div></div>
+    </div>
+    <div class="ov-card">
+      <div class="ov-val" id="ov-topics" style="color:var(--ai-green)">0</div>
+      <div class="ov-lbl">Topics Completed</div>
+      <div class="ov-bar"><div class="ov-bar-fill" id="ov-topics-bar" style="background:var(--ai-green);"></div></div>
+    </div>
+    <div class="ov-card">
+      <div class="ov-val" id="ov-mods" style="color:var(--ai-purple)">0</div>
+      <div class="ov-lbl">Modules Done</div>
+      <div class="ov-bar"><div class="ov-bar-fill" id="ov-mods-bar" style="background:var(--ai-purple);"></div></div>
+    </div>
+    <div class="ov-card">
+      <div class="ov-val" id="ov-streak" style="color:var(--ai-orange)">🔥 0</div>
+      <div class="ov-lbl">Day Streak</div>
+    </div>
+  </div>
+
+  <!-- MOTIVATION -->
+  <div class="motivation-box anim-3" id="motivationBox">
+    <div class="quote-text" id="quoteText">"Every expert was once a beginner. Start your DevOps journey today."</div>
+    <div class="quote-auth">— DevOps Wisdom</div>
+  </div>
+
+  <!-- ACTION BUTTONS -->
+  <div class="action-row anim-3">
+    <a href="roadmap.html" class="btn btn-primary">Go to Roadmap →</a>
+    <button class="btn btn-outline" onclick="resetAll()">Reset Progress</button>
+  </div>
+
+  <!-- MODULE PROGRESS BARS -->
+  <div class="sec-eyebrow" style="margin-bottom:16px;">Module Breakdown</div>
+  <div class="module-progress anim-4" id="modProgressArea">
+    <div class="mod-prog-row"><span class="mod-prog-icon">🌐</span><span class="mod-prog-name">Cloud & DevOps Foundation</span><div class="mod-prog-bar-wrap"><div class="mod-prog-bar"><div class="mod-prog-fill" id="mpf-m1" style="background:#6366f1"></div></div></div><span class="mod-prog-pct" id="mpp-m1" style="color:#6366f1">0%</span><span class="mod-prog-days">Day 01–03</span></div>
+    <div class="mod-prog-row"><span class="mod-prog-icon">🐧</span><span class="mod-prog-name">Linux Administration + GCP</span><div class="mod-prog-bar-wrap"><div class="mod-prog-bar"><div class="mod-prog-fill" id="mpf-m2" style="background:#10b981"></div></div></div><span class="mod-prog-pct" id="mpp-m2" style="color:#10b981">0%</span><span class="mod-prog-days">Day 04–08</span></div>
+    <div class="mod-prog-row"><span class="mod-prog-icon">☁️</span><span class="mod-prog-name">AWS Top 10 Services</span><div class="mod-prog-bar-wrap"><div class="mod-prog-bar"><div class="mod-prog-fill" id="mpf-m3" style="background:#f59e0b"></div></div></div><span class="mod-prog-pct" id="mpp-m3" style="color:#f59e0b">0%</span><span class="mod-prog-days">Day 09–20</span></div>
+    <div class="mod-prog-row"><span class="mod-prog-icon">🔄</span><span class="mod-prog-name">CI/CD — Git, GitHub & Jenkins</span><div class="mod-prog-bar-wrap"><div class="mod-prog-bar"><div class="mod-prog-fill" id="mpf-m4" style="background:#ec4899"></div></div></div><span class="mod-prog-pct" id="mpp-m4" style="color:#ec4899">0%</span><span class="mod-prog-days">Day 21–28</span></div>
+    <div class="mod-prog-row"><span class="mod-prog-icon">🐳</span><span class="mod-prog-name">Docker & Kubernetes + GKE</span><div class="mod-prog-bar-wrap"><div class="mod-prog-bar"><div class="mod-prog-fill" id="mpf-m5" style="background:#06b6d4"></div></div></div><span class="mod-prog-pct" id="mpp-m5" style="color:#06b6d4">0%</span><span class="mod-prog-days">Day 30–35</span></div>
+    <div class="mod-prog-row"><span class="mod-prog-icon">📦</span><span class="mod-prog-name">Ansible & Terraform — IaC</span><div class="mod-prog-bar-wrap"><div class="mod-prog-bar"><div class="mod-prog-fill" id="mpf-m6" style="background:#8b5cf6"></div></div></div><span class="mod-prog-pct" id="mpp-m6" style="color:#8b5cf6">0%</span><span class="mod-prog-days">Day 36–40</span></div>
+    <div class="mod-prog-row"><span class="mod-prog-icon">📊</span><span class="mod-prog-name">Prometheus & Grafana Monitoring</span><div class="mod-prog-bar-wrap"><div class="mod-prog-bar"><div class="mod-prog-fill" id="mpf-m7" style="background:#f97316"></div></div></div><span class="mod-prog-pct" id="mpp-m7" style="color:#f97316">0%</span><span class="mod-prog-days">Day 43–45</span></div>
+    <div class="mod-prog-row"><span class="mod-prog-icon">🐍</span><span class="mod-prog-name">Bash & Python for DevOps + AI</span><div class="mod-prog-bar-wrap"><div class="mod-prog-bar"><div class="mod-prog-fill" id="mpf-m8" style="background:#eab308"></div></div></div><span class="mod-prog-pct" id="mpp-m8" style="color:#eab308">0%</span><span class="mod-prog-days">Day 46–49</span></div>
+    <div class="mod-prog-row"><span class="mod-prog-icon">🚀</span><span class="mod-prog-name">8 Real-Time Live Projects</span><div class="mod-prog-bar-wrap"><div class="mod-prog-bar"><div class="mod-prog-fill" id="mpf-m9" style="background:#ef4444"></div></div></div><span class="mod-prog-pct" id="mpp-m9" style="color:#ef4444">0%</span><span class="mod-prog-days">Day 50–58</span></div>
+  </div>
+
+  <!-- JOURNEY TIMELINE -->
+  <div class="divider"><div class="div-line"></div><div class="div-txt">Journey Milestones</div><div class="div-line"></div></div>
+  <div class="journey-timeline anim-4">
+    <div class="jt-item"><div class="jt-dot" id="jt1"></div><div class="jt-content"><div class="jt-title">Foundation Complete</div><div class="jt-sub">Cloud & DevOps Foundation · Linux · GCP Setup</div></div></div>
+    <div class="jt-item"><div class="jt-dot" id="jt2"></div><div class="jt-content"><div class="jt-title">AWS Certified Knowledge</div><div class="jt-sub">12 AWS Services · 10+ Practicals · VPC & Networking</div></div></div>
+    <div class="jt-item"><div class="jt-dot" id="jt3"></div><div class="jt-content"><div class="jt-title">CI/CD Engineer</div><div class="jt-sub">Git + GitHub + Jenkins Mastery · 8 Sessions</div></div></div>
+    <div class="jt-item"><div class="jt-dot" id="jt4"></div><div class="jt-content"><div class="jt-title">Container Specialist</div><div class="jt-sub">Docker + Kubernetes + GKE · Production Grade</div></div></div>
+    <div class="jt-item"><div class="jt-dot" id="jt5"></div><div class="jt-content"><div class="jt-title">IaC Master</div><div class="jt-sub">Terraform + Ansible · Infrastructure as Code</div></div></div>
+    <div class="jt-item"><div class="jt-dot" id="jt6"></div><div class="jt-content"><div class="jt-title">AI-Powered DevOps Engineer</div><div class="jt-sub">Bash + Python + AI + Monitoring · Full Stack</div></div></div>
+    <div class="jt-item"><div class="jt-dot" id="jt7"></div><div class="jt-content"><div class="jt-title">🏆 DevOps Mastery Complete</div><div class="jt-sub">8 Live Projects · Portfolio Ready · Job Ready</div></div></div>
+  </div>
+
+</div>
+
+<footer class="footer">
+  <div class="footer-logo">DevOps Mastery · Batch 43</div>
+  <div class="footer-links">
+    <a href="../index.html">Home</a><a href="roadmap.html">Roadmap</a><a href="projects.html">Projects</a><a href="stack.html">Stack</a><a href="progress.html">Progress</a>
+  </div>
+  <div class="footer-copy">Online Multi Cloud with AWS + DevOps with AI · clouddevopshub.com</div>
+</footer>
+
+<div class="toast" id="toast"><span id="tIcon">✅</span><span id="tMsg">Done!</span></div>
+
+<script src="../js/main.js"></script>
+<script src="../js/progress.js"></script>
+<script>
+const quotes = [
+  { text: '"Every expert was once a beginner. Your DevOps journey starts with a single commit."', auth: 'DevOps Wisdom' },
+  { text: '"Automate everything once. Then focus on what machines can\'t do."', auth: 'SRE Principle' },
+  { text: '"Infrastructure as Code isn\'t a tool — it\'s a mindset shift."', auth: 'Terraform Docs' },
+  { text: '"Ship fast, fail safe, recover instantly. That\'s DevOps."', auth: 'Cloud Native' },
+  { text: '"The best monitoring alert is the one that never fires."', auth: 'SRE Handbook' },
+];
+
+const MOD_TOTALS = { m1:3, m2:5, m3:12, m4:8, m5:6, m6:5, m7:3, m8:4, m9:8 };
+
+function renderProgressPage() {
+  const data    = Store.get('dvp') || {};
+  const days    = data.days || [];
+  const total   = Object.values(MOD_TOTALS).reduce((a,b)=>a+b,0);
+  const done    = days.length;
+  const pct     = total ? Math.round(done/total*100) : 0;
+
+  // Overview
+  document.getElementById('ov-overall').textContent = pct + '%';
+  document.getElementById('ov-overall-bar').style.width = pct + '%';
+  document.getElementById('ov-topics').textContent  = done;
+  document.getElementById('ov-topics-bar').style.width = (done/total*100) + '%';
+
+  // Per-module bars
+  const MODS = ['m1','m2','m3','m4','m5','m6','m7','m8','m9'];
+  const modDone = {};
+  MODS.forEach(m => modDone[m] = 0);
+  days.forEach(({m}) => { if(modDone[m] !== undefined) modDone[m]++; });
+
+  let modsDone = 0;
+  MODS.forEach(m => {
+    const t = MOD_TOTALS[m];
+    const d = modDone[m];
+    const p = t ? Math.round(d/t*100) : 0;
+    const bar = document.getElementById('mpf-' + m);
+    const txt = document.getElementById('mpp-' + m);
+    if(bar) bar.style.width = p + '%';
+    if(txt) txt.textContent = p + '%';
+    if(p===100) modsDone++;
+  });
+
+  document.getElementById('ov-mods').textContent = modsDone;
+  document.getElementById('ov-mods-bar').style.width = (modsDone/9*100) + '%';
+
+  // Streak (simplified)
+  document.getElementById('ov-streak').textContent = '🔥 ' + Math.min(done, 30);
+
+  // Quote
+  const q = quotes[Math.floor(Math.random()*quotes.length)];
+  document.getElementById('quoteText').textContent = q.text;
+  document.querySelector('.quote-auth').textContent = '— ' + q.auth;
+
+  // Timeline dots
+  const milestones = [
+    done >= 8,
+    done >= 20,
+    done >= 28,
+    done >= 34,
+    done >= 39,
+    done >= 45,
+    done >= 54,
+  ];
+  milestones.forEach((reached, i) => {
+    const dot = document.getElementById('jt' + (i+1));
+    if(!dot) return;
+    if(reached) dot.className = 'jt-dot done';
+    else if(done >= (i === 0 ? 0 : [8,20,28,34,39,45][i-1])) dot.className = 'jt-dot current';
+  });
+
+  // Nav
+  updateNavProgress(pct);
+}
+
+document.addEventListener('DOMContentLoaded', renderProgressPage);
+</script>
+</body>
+</html>

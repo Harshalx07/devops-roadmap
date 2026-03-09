@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DevOps AI Roadmap · Live Projects</title>
+<link rel="stylesheet" href="../css/style.css">
+<style>
+.page-hero { position:relative;z-index:1; padding:120px 48px 60px; max-width:1280px; margin:0 auto; }
+.projects-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(320px,1fr)); gap:16px; }
+
+.proj-card {
+  position:relative; padding:24px; cursor:pointer; user-select:none;
+  background:linear-gradient(145deg,var(--surface) 0%,#08091a 100%);
+  border:1px solid var(--border); border-radius:var(--radius-lg);
+  transition:all 0.3s; overflow:hidden;
+  box-shadow:var(--shadow-card),4px 8px 0 rgba(0,0,0,0.3);
+}
+.proj-card::before { content:''; position:absolute; top:0;left:0;right:0; height:1px; background:linear-gradient(90deg,transparent,rgba(255,255,255,0.07),transparent); }
+.proj-card:hover { border-color:var(--border-h); transform:translateY(-5px); box-shadow:var(--shadow-hover),2px 4px 0 rgba(0,0,0,0.2); }
+.proj-card.is-done { background:linear-gradient(145deg,#091512 0%,#050d09 100%); border-color:rgba(16,185,129,0.28); }
+.proj-card.is-done:hover { box-shadow:0 24px 70px rgba(0,0,0,0.55),0 8px 28px rgba(16,185,129,0.18); }
+
+.proj-num { font-family:var(--font-display); font-weight:800; font-size:52px; color:rgba(99,102,241,0.07); position:absolute; top:8px;right:14px; line-height:1; pointer-events:none; }
+.proj-card.is-done .proj-num { color:rgba(16,185,129,0.07); }
+
+.proj-done-badge { position:absolute; top:14px;right:14px; background:var(--ai-green); color:#fff; font-size:10px; font-weight:700; padding:3px 10px; border-radius:20px; display:none; box-shadow:0 0 14px var(--ai-green); animation:checkPop 0.3s cubic-bezier(0.34,1.56,0.64,1); }
+.proj-card.is-done .proj-done-badge { display:block; }
+
+.proj-icon { width:40px;height:40px; border-radius:10px; background:rgba(99,102,241,0.1); border:1px solid rgba(99,102,241,0.15); display:flex;align-items:center;justify-content:center; font-size:20px; margin-bottom:14px; box-shadow:0 4px 12px rgba(0,0,0,0.3),inset 0 1px 0 rgba(255,255,255,0.05); }
+.proj-card.is-done .proj-icon { background:rgba(16,185,129,0.1); border-color:rgba(16,185,129,0.2); }
+
+.proj-title { font-family:var(--font-display); font-weight:700; font-size:14px; color:#fff; line-height:1.3; margin-bottom:10px; }
+.proj-desc  { font-size:12.5px; color:var(--text-muted); line-height:1.65; margin-bottom:14px; }
+.proj-tags  { display:flex; flex-wrap:wrap; gap:5px; }
+.ptag { font-family:var(--font-mono); font-size:9px; letter-spacing:0.5px; color:rgba(99,102,241,0.65); border:1px solid rgba(99,102,241,0.18); background:rgba(99,102,241,0.05); padding:2px 8px; border-radius:4px; text-transform:uppercase; }
+.proj-card.is-done .ptag { color:rgba(16,185,129,0.65); border-color:rgba(16,185,129,0.18); background:rgba(16,185,129,0.05); }
+
+.proj-click-hint { font-family:var(--font-mono); font-size:9px; letter-spacing:1px; color:var(--text-dim); text-transform:uppercase; margin-top:14px; opacity:0; transition:opacity 0.2s; }
+.proj-card:hover .proj-click-hint { opacity:1; }
+.proj-card.is-done .proj-click-hint { display:none; }
+
+/* STATS BAR */
+.stats-bar { display:flex; gap:24px; padding:20px 24px; background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-md); margin-bottom:36px; flex-wrap:wrap; }
+.stat-item { display:flex; flex-direction:column; gap:3px; }
+.stat-val { font-family:var(--font-display); font-weight:800; font-size:26px; color:#fff; line-height:1; }
+.stat-lbl { font-family:var(--font-mono); font-size:9px; letter-spacing:2px; color:var(--text-dim); text-transform:uppercase; }
+.stat-item.green .stat-val { color:var(--ai-green); }
+
+@media(max-width:640px) { .page-hero{padding:110px 20px 48px;} }
+</style>
+</head>
+<body>
+
+<div class="neural-bg"><canvas id="nc"></canvas></div>
+
+<nav class="nav">
+  <div class="nav-brand"><div class="nav-dot"></div>DevOps AI Roadmap</div>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="roadmap.html">Roadmap</a></li>
+    <li><a href="projects.html" class="active">Projects</a></li>
+    <li><a href="stack.html">Tech Stack</a></li>
+    <li><a href="progress.html">My Progress</a></li>
+  </ul>
+  <div class="nav-right">
+    <span class="nav-prog-label">PROGRESS</span>
+    <div class="nav-prog-bar"><div class="nav-prog-fill" id="navFill"></div></div>
+    <span class="nav-pct" id="navPct">0%</span>
+  </div>
+</nav>
+
+<div class="page-hero page">
+  <div class="sec-eyebrow anim-1">Capstone · Real-World · Module 09</div>
+  <h1 class="sec-h2 anim-2" style="font-size:clamp(32px,5vw,52px);margin-bottom:12px;">8 <span class="grad">Live Projects</span></h1>
+  <p style="color:var(--text-muted);font-size:15px;font-weight:300;max-width:540px;line-height:1.7;margin-bottom:32px;" class="anim-2">
+    Real production-grade projects that go directly onto your portfolio. Click each card to mark it complete as you finish building it.
+  </p>
+
+  <div class="stats-bar anim-3" id="statsBar">
+    <div class="stat-item"><span class="stat-val" id="statDone">0</span><span class="stat-lbl">Completed</span></div>
+    <div class="stat-item"><span class="stat-val">8</span><span class="stat-lbl">Total Projects</span></div>
+    <div class="stat-item green"><span class="stat-val" id="statPct">0%</span><span class="stat-lbl">Completion</span></div>
+  </div>
+
+  <div class="projects-grid anim-4">
+
+    <div class="proj-card" onclick="toggleProj(this)">
+      <div class="proj-num">01</div>
+      <div class="proj-done-badge">✓ Done</div>
+      <div class="proj-icon">🔄</div>
+      <div class="proj-title">Complete CI/CD Pipeline Implementation</div>
+      <div class="proj-desc">Java Spring Boot app with full pipeline: GitHub → Jenkins CI → Docker build → Deploy to Remote Machine via Jenkinsfile</div>
+      <div class="proj-tags"><span class="ptag">Jenkins</span><span class="ptag">Docker</span><span class="ptag">Spring Boot</span><span class="ptag">GitHub</span><span class="ptag">CI/CD</span></div>
+      <div class="proj-click-hint">↑ tap to mark complete</div>
+    </div>
+
+    <div class="proj-card" onclick="toggleProj(this)">
+      <div class="proj-num">02</div>
+      <div class="proj-done-badge">✓ Done</div>
+      <div class="proj-icon">☸️</div>
+      <div class="proj-title">Deploy Microservices on GKE</div>
+      <div class="proj-desc">E-commerce application using Java/Python/Go/.NET on GKE Kubernetes cluster with scalability and high availability</div>
+      <div class="proj-tags"><span class="ptag">GKE</span><span class="ptag">Kubernetes</span><span class="ptag">Microservices</span><span class="ptag">E-Commerce</span></div>
+      <div class="proj-click-hint">↑ tap to mark complete</div>
+    </div>
+
+    <div class="proj-card" onclick="toggleProj(this)">
+      <div class="proj-num">03</div>
+      <div class="proj-done-badge">✓ Done</div>
+      <div class="proj-icon">📦</div>
+      <div class="proj-title">AWS Infrastructure with Terraform</div>
+      <div class="proj-desc">Provision 40 AWS resources: EC2, VPC, ELB, Auto Scaling, RDS, EIP, Subnets as full Infrastructure as Code</div>
+      <div class="proj-tags"><span class="ptag">Terraform</span><span class="ptag">AWS</span><span class="ptag">IaC</span><span class="ptag">EC2</span><span class="ptag">VPC</span><span class="ptag">RDS</span></div>
+      <div class="proj-click-hint">↑ tap to mark complete</div>
+    </div>
+
+    <div class="proj-card" onclick="toggleProj(this)">
+      <div class="proj-num">04</div>
+      <div class="proj-done-badge">✓ Done</div>
+      <div class="proj-icon">🔐</div>
+      <div class="proj-title">DevSecOps 3-Tier Application</div>
+      <div class="proj-desc">Secure pipeline with Trivy, Docker, SonarQube on Online Quiz Application with security vulnerability scanning</div>
+      <div class="proj-tags"><span class="ptag">DevSecOps</span><span class="ptag">Trivy</span><span class="ptag">Docker</span><span class="ptag">SonarQube</span><span class="ptag">Security</span></div>
+      <div class="proj-click-hint">↑ tap to mark complete</div>
+    </div>
+
+    <div class="proj-card" onclick="toggleProj(this)">
+      <div class="proj-num">05</div>
+      <div class="proj-done-badge">✓ Done</div>
+      <div class="proj-icon">💙</div>
+      <div class="proj-title">Azure DevOps Full CI/CD</div>
+      <div class="proj-desc">Full CI/CD on Azure: Azure Repos + Azure Boards + Azure Pipelines + Test Plan + Artifacts — full SDLC</div>
+      <div class="proj-tags"><span class="ptag">Azure</span><span class="ptag">Azure Repos</span><span class="ptag">Azure Pipelines</span><span class="ptag">CI/CD</span></div>
+      <div class="proj-click-hint">↑ tap to mark complete</div>
+    </div>
+
+    <div class="proj-card" onclick="toggleProj(this)">
+      <div class="proj-num">06</div>
+      <div class="proj-done-badge">✓ Done</div>
+      <div class="proj-icon">🤖</div>
+      <div class="proj-title">Multi-Cloud + AI Application</div>
+      <div class="proj-desc">Python ATS Application running on AWS + GCP using AI integration and true multi-cloud deployment strategy</div>
+      <div class="proj-tags"><span class="ptag">AI</span><span class="ptag">AWS</span><span class="ptag">GCP</span><span class="ptag">Python</span><span class="ptag">Multi-Cloud</span></div>
+      <div class="proj-click-hint">↑ tap to mark complete</div>
+    </div>
+
+    <div class="proj-card" onclick="toggleProj(this)">
+      <div class="proj-num">07</div>
+      <div class="proj-done-badge">✓ Done</div>
+      <div class="proj-icon">✨</div>
+      <div class="proj-title">Gemini AI DevOps Project</div>
+      <div class="proj-desc">Gemini AI integration for intelligent DevOps automation, smart decision-making and automated operational workflows</div>
+      <div class="proj-tags"><span class="ptag">Gemini</span><span class="ptag">AI</span><span class="ptag">Automation</span><span class="ptag">Workflows</span></div>
+      <div class="proj-click-hint">↑ tap to mark complete</div>
+    </div>
+
+    <div class="proj-card" onclick="toggleProj(this)">
+      <div class="proj-num">08</div>
+      <div class="proj-done-badge">✓ Done</div>
+      <div class="proj-icon">📊</div>
+      <div class="proj-title">AI OPS Dashboard</div>
+      <div class="proj-desc">Make AI-based OPS decisions with Python + Azure Infra + AI Integration Dashboards for real-time intelligent monitoring</div>
+      <div class="proj-tags"><span class="ptag">AI OPS</span><span class="ptag">Azure</span><span class="ptag">Dashboard</span><span class="ptag">Python</span><span class="ptag">Monitoring</span></div>
+      <div class="proj-click-hint">↑ tap to mark complete</div>
+    </div>
+
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-logo">DevOps Mastery · Batch 43</div>
+  <div class="footer-links">
+    <a href="../index.html">Home</a><a href="roadmap.html">Roadmap</a><a href="projects.html">Projects</a><a href="stack.html">Stack</a><a href="progress.html">Progress</a>
+  </div>
+  <div class="footer-copy">Online Multi Cloud with AWS + DevOps with AI · clouddevopshub.com</div>
+</footer>
+
+<div class="toast" id="toast"><span id="tIcon">✅</span><span id="tMsg">Done!</span></div>
+
+<script src="../js/main.js"></script>
+<script src="../js/progress.js"></script>
+<script>
+function updateProjStats() {
+  const done = document.querySelectorAll('.proj-card.is-done').length;
+  const total = document.querySelectorAll('.proj-card').length;
+  document.getElementById('statDone').textContent = done;
+  document.getElementById('statPct').textContent = total ? Math.round(done/total*100)+'%' : '0%';
+}
+
+// Override toggleProj to also update stats
+const _origToggleProj = toggleProj;
+window.toggleProj = function(card) {
+  _origToggleProj(card);
+  updateProjStats();
+};
+
+document.addEventListener('DOMContentLoaded', () => {
+  restoreProgress();
+  updateProjStats();
+});
+</script>
+</body>
+</html>
