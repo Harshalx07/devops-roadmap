@@ -129,3 +129,4 @@ This project is for personal learning and portfolio use.
 ---
 
 *Built with ❤️ to track a 58-day DevOps mastery journey.*
+Harshalgalande9@gmail.com
